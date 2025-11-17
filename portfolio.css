@@ -1,0 +1,10 @@
+.photo {
+    width: 200px;
+    border-radius: 80px 20px;
+    align-self: left;
+}
+
+.text-block {
+    display: inline-block;
+    vertical-align: middle;
+}
