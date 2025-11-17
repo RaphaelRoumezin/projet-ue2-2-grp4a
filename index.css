@@ -14,7 +14,7 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02) translateY(-10px);
     box-shadow: 0 0 50px #444;
 }
 
