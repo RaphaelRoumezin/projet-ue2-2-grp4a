@@ -1,7 +1,9 @@
+/* Tout notre css */
 body {
     font-family: Arial, sans-serif;
 }
 
+/* Paramètres pour que "Nos Portfolios" soit comme nous le voulons*/
 .titre {
   text-align: center;
   margin-top: 30px;
@@ -18,17 +20,18 @@ body {
 
 }
 
+/* Mise en place des ombres quand on passe la souris sur les cartes*/
 .card {
     max-width: 350px;
     box-shadow: 0 0 20px #888;
     transition: all 0.3s ease;
 }
-
+/* Mise en place de l'animation quand on passe la souris sur les cartes*/
 .card:hover {
     transform: scale(1.02) translateY(-10px);
     box-shadow: 0 0 50px #444;
 }
-
+/* Bon emplacement des cartes */
 .cards {
     display: flex;
     justify-content: center;
@@ -36,7 +39,7 @@ body {
     margin: 80px 20px;
     flex-wrap: wrap;
 }
-
+/* Lien sur les cartes sans que le texte soit souligné */
 .lien-invisible {
     text-decoration: none;
     color: inherit;
