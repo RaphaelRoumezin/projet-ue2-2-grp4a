@@ -1,12 +1,23 @@
 /* Tout notre css */
-body {
+body, html {
     background-color: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    text-align: right;
 }
 
 /* Paramètres pour que "Nos Portfolios" soit comme nous le voulons*/
 .titre {
   text-align: center;
-  margin-top: 30px;
+  padding-top: 30px;
   font-size: 60px;
   font-weight: 700;
 }
@@ -28,7 +39,8 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
-    margin: 80px 20px;
+    margin: 20px;
+    margin-top: 80px;
     flex-wrap: wrap;
 }
 /* Lien sur les cartes sans que le texte soit souligné */
@@ -42,7 +54,7 @@ body {
 
     /* Réduire la taille du titre */
    .titre { 
-      font-size: 40px; 
+        font-size: 40px; 
    }
 
    /* Supprimer l'animation au survol des cartes */
