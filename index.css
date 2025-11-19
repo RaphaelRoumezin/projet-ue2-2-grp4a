@@ -39,10 +39,12 @@ body {
 /* Paramètres particuliers pour mobile */
 @media only screen and (max-width: 520px) {
 
+    /* Réduire la taille du titre */
    .titre { 
       font-size: 40px; 
    }
 
+   /* Supprimer l'animation au survol des cartes */
    .card:hover {
         transform: none;
         box-shadow: 0 0 20px #888;
