@@ -5,12 +5,21 @@ body {
 .titre {
   text-align: center;
   margin-top: 30px;
-  font-size: 57px;
+  font-size: 60px;
   font-weight: 700;
 }
 
+/* Affichage mobile */
+@media only screen and (max-width: 520px) {
+
+   .titre { 
+      font-size: 40px; 
+   }
+
+}
+
 .card {
-    width: 350px;
+    max-width: 350px;
     box-shadow: 0 0 20px #888;
     transition: all 0.3s ease;
 }
@@ -24,7 +33,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
-    margin: 80px 0;
+    margin: 80px 20px;
     flex-wrap: wrap;
 }
 
