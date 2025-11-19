@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <!-- Le bloc page permet l'alignement pour le footer -->
     <header>
         <!-- Titre sur notre page -->
         <h1 class="titre">Nos portfolios</h1>
@@ -70,7 +69,7 @@
     </main>
 
     <footer>
-        &copy; <?php echo date("Y"); ?> Nos portfolios. Tous droits réservés.
+        &copy; <?= date("Y") ?> Nos portfolios. Tous droits réservés.
     </footer>
 </body>
 
