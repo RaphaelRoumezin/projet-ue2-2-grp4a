@@ -12,6 +12,13 @@
     margin: 50px;
 }
 
+.bio {
+    align-items: right;
+    justify-content: right;
+    gap: 50px;
+    margin: 50px;
+}
+
 .hero .text-block {
     max-width: 600px;
 }
