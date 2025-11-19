@@ -11,15 +11,6 @@ body {
   font-weight: 700;
 }
 
-/* Affichage mobile */
-@media only screen and (max-width: 520px) {
-
-   .titre { 
-      font-size: 40px; 
-   }
-
-}
-
 /* Mise en place des ombres quand on passe la souris sur les cartes*/
 .card {
     max-width: 350px;
@@ -43,4 +34,18 @@ body {
 .lien-invisible {
     text-decoration: none;
     color: inherit;
+}
+
+/* Paramètres particuliers pour mobile */
+@media only screen and (max-width: 520px) {
+
+   .titre { 
+      font-size: 40px; 
+   }
+
+   .card:hover {
+        transform: none;
+        box-shadow: 0 0 20px #888;
+   }
+
 }
