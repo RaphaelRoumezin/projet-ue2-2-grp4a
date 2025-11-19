@@ -1,8 +1,8 @@
-.photo {
+/*.photo {
     width: 300px;
     border-radius: 20px 100px;
     align-self: left;
-}
+}*/
 
 .hero {
     display: flex;
@@ -49,11 +49,14 @@
   margin-top: 60px;
 }
 
+.hero {
+  text-align: center;
+}
+
 .hero img {
-  width: 200px;
+  width: 500px;
   border-radius: 5%;
   margin-bottom: 20px;
-  box-shadow: 0 0 30px #888;
 }
 
 .grid {
