@@ -10,7 +10,7 @@
     <!-- Relation avec notre css -->
     <link rel="stylesheet" href="index.css">
     <title>Nos portfolios</title>
-
+    <!-- CSS directement dans notre contact, mise en place d'une "grille" -->
     <style>
         form {
             display: grid;
@@ -30,7 +30,7 @@
         <!-- Titre sur notre page -->
         <h1 class="titre">Contacter Steve Harvey</h1>
     </header>
-
+    <!-- rubriques nom prénom genres téléphone email sujet message -->
     <main class="section-etroite">
         <form method="post">
             <div class="zone-nom">
@@ -43,7 +43,7 @@
             </div>
         </form>
     </main>
-
+    <!-- footer en bas de la page grace a notre liaison a index.css -->
     <footer>
         &copy; <?= date("Y") ?> Nos portfolios. Tous droits réservés.
     </footer>
