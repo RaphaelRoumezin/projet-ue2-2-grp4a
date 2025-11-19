@@ -22,7 +22,7 @@
     <main>
         <!-- Mise en place de "cartes" pour chacun des participants du groupe/ image, nom prénom, description, bouton -->
         <div class="cards">
-            <a href="echaudat.html" class="lien-invisible">
+            <a href="portfolios/echaudat.html" class="lien-invisible">
                 <div class="card">
                     <img src="images/echaudat.jpg" class="card-img-top" alt="Ethan">
                     <div class="card-body">
@@ -37,7 +37,7 @@
                 </div>
             </a>
 
-            <a href="sduchanaud.html" class="lien-invisible">
+            <a href="portfolios/sduchanaud.html" class="lien-invisible">
                 <div class="card">
                     <img src="images/sduchanaud.jpg" class="card-img-top" alt="Simon">
                     <div class="card-body">
@@ -52,7 +52,7 @@
                 </div>
             </a>
 
-            <a href="rroumezin.html" class="lien-invisible">
+            <a href="portfolios/rroumezin.html" class="lien-invisible">
                 <div class="card">
                     <img src="images/rroumezin.jpg" class="card-img-top" alt="Raphaël ROUMEZIN">
                     <div class="card-body">
