@@ -16,6 +16,7 @@ body {
     max-width: 350px;
     box-shadow: 0 0 20px #888;
     transition: all 0.3s ease;
+    border-width: 0px;
 }
 /* Mise en place de l'animation quand on passe la souris sur les cartes*/
 .card:hover {
