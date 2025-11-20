@@ -13,11 +13,11 @@
   <!-- Barre de navigation -->
   <nav class="navbar">
     <ul>
-      <li><a id="link-accueil" href="#accueil">Accueil</a></li>
+      <li><a id="link-accueil" class="active" href="#accueil">Accueil</a></li>
       <li><a id="link-projets" href="#projets">Mes projets</a></li>
       <li><a id="link-apropos" href="#apropos">A propos</a></li>
       <li><a id="link-competences" href="#competences">Mes compétences</a></li>
-      <li><a id="link-contact" href="#contact">Contact</a></li>
+      <li><a id="link-contact" href="../contact.php?to=sduchanaud">Contact</a></li>
     </ul>
   </nav>
 
@@ -77,13 +77,13 @@
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
 
-    let currentSection = null;
+    let currentSection = "accueil";
 
     const observer = new IntersectionObserver((entries) => {
       // Garder la dernière section visible
       entries.filter(entry => entry.isIntersecting);
       const entry = entries[entries.length - 1];
-      
+
       if (entry.isIntersecting) {
         const id = entry.target.id;
 
@@ -109,6 +109,7 @@
       root: null,
       threshold: 1,
     });
+
 
     sections.forEach(section => observer.observe(section));
   </script>

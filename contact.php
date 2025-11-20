@@ -1,4 +1,20 @@
 <?php
+    $staticDbPersonnes = [
+        "sduchanaud" => "Simon DUCHANAUD",
+        "echaudat" => "Ethan CHAUDAT",
+        "rroumezin" => "Raphaël ROUMEZIN"
+    ];
+
+    // Récupération du destinataire
+    $toKey = $_GET['to'] ?? $_POST['to'] ?? '';
+    $toName = $staticDbPersonnes[$toKey] ?? '';
+    if ($toName == '') {
+        // Destinataire invalide, redirection vers la page principale
+        header("Location: index.php");
+        http_response_code(303);
+        exit();
+    }
+
     $statuts = [];
 
     // Reception de formulaire
@@ -99,15 +115,17 @@
 <body>
     <header>
         <!-- Titre sur notre page -->
-        <h1 class="titre">Contacter Steve Harvey</h1>
+        <h1 class="titre">Contacter <?= $toName ?></h1>
     </header>
     <!-- rubriques nom prénom genres téléphone email sujet message -->
     <main class="section-etroite">
         <form method="post">
+            <input type="hidden" name="to" value="<?= htmlspecialchars($toKey) ?>">
+
             <div class="zone-statuts">
-                <?php foreach ($statuts as [$type, $message]) : ?>
+                <?php foreach ($statuts as [$type, $contenu]) : ?>
                     <div class="alert alert-<?= $type ?>" role="alert">
-                        <?= htmlspecialchars($message) ?>
+                        <?= htmlspecialchars($contenu) ?>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -117,16 +135,16 @@
             </div>
             <div class="zone-prenom">
                 <label for="input-prenom" class="form-label">Prénom<span class="text-danger">*</span>:</label>
-                <input name="prenom" type="text" class="form-control" id="input-prenom" placeholder="Jean" required>
+                <input name="prenom" type="text" class="form-control" id="input-prenom" placeholder="Jean" required value="<?= htmlspecialchars($prenom ?? '') ?>">
             </div>
             <div class="zone-genre">
                 <label for="input-genre" class="form-label">Genre:</label>
                 <select name="genre" id="input-genre" class="form-select">
-                    <option value="n" selected></option>
-                    <option value="h">Homme</option>
-                    <option value="f">Femme</option>
-                    <option value="a">Autre</option>
-                    <option value="c">Croissant</option>
+                    <option value="n" <?php if (($genre ?? 'n') == 'n') echo 'selected'; ?>></option>
+                    <option value="h" <?php if (($genre ?? 'n') == 'h') echo 'selected'; ?>>Homme</option>
+                    <option value="f" <?php if (($genre ?? 'n') == 'f') echo 'selected'; ?>>Femme</option>
+                    <option value="a" <?php if (($genre ?? 'n') == 'a') echo 'selected'; ?>>Autre</option>
+                    <option value="c" <?php if (($genre ?? 'n') == 'c') echo 'selected'; ?>>Croissant</option>
                 </select>
             </div>
             <div class="zone-tel">
@@ -138,15 +156,15 @@
             </div>
             <div class="zone-email">
                 <label for="input-email" class="form-label">Email<span class="text-danger">*</span>:</label>
-                <input name="email" type="email" class="form-control" id="input-email" placeholder="jeandupont@gmail.com" required>
+                <input name="email" type="email" class="form-control" id="input-email" placeholder="jeandupont@gmail.com" required value="<?= htmlspecialchars($email ?? '') ?>">
             </div>
             <div class="zone-subject">
                 <label for="input-subject" class="form-label">Sujet<span class="text-danger">*</span>:</label>
-                <input name="subject" type="text" class="form-control" id="input-subject" required>
+                <input name="subject" type="text" class="form-control" id="input-subject" required value="<?= htmlspecialchars($sujet ?? '') ?>">
             </div>
             <div class="zone-message">
                 <label for="input-message" class="form-label">Message<span class="text-danger">*</span>:</label>
-                <textarea name="message" name="message" id="input-message" class="form-control" rows="6"></textarea>
+                <textarea name="message" name="message" id="input-message" class="form-control" rows="6" ><?= htmlspecialchars($message ?? '') ?></textarea>
             </div>
             <div class="zone-boutons">
                 <input class="btn btn-outline-secondary" type="reset" value="Réinitialiser">
