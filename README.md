@@ -19,9 +19,10 @@ Ce site présente les portfolios de Ethan CHAUDAT, Simon DUCHANAUD et Raphaël R
 
 ## Organisation des fichiers
 - images/ → toutes les images
-- portfolios/ → Tous les fichiers et ressources utilisés pour créer les portfolios
 - index.php → page d'accueil
-- portfolio_ethan.html, portfolio_simon.html, portfolio_raphael.html → pages des portfolios
+- contact.php → page de contact dynamique
+- portfolio.php → pages de portfolio dynamique
+
 
 ## Instructions pour lancer le site
 1. Cloner le dépôt

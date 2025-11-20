@@ -36,7 +36,7 @@
                 </div>
             </a>
 
-            <a href="portfolios/sduchanaud.html" class="lien-invisible">
+            <a href="portfolio.php?name=sduchanaud" class="lien-invisible">
                 <div class="card">
                     <img src="images/sduchanaud.jpg" class="card-img-top" alt="Simon">
                     <div class="card-body">
