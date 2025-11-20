@@ -3,7 +3,6 @@
     border-radius: 20px 100px;
     align-self: left;
 }*/
-
 .hero {
     display: flex;
     align-items: center;
@@ -12,19 +11,17 @@
     margin: 50px;
 }
 
-.bio {
-    align-items: right;
-    justify-content: right;
-    gap: 50px;
-    margin: 50px;
-}
-
 .hero .text-block {
     max-width: 600px;
+    margin-top: 20px;
 }
 
-.hero .text-block p {
-    margin-top: 20px;
+.hero-container {
+  display: flex;
+  align-items: flex-start; 
+  gap: 40px;
+  min-height: 80vh;
+  padding: 50px;
 }
 
 .navbar {
@@ -32,7 +29,7 @@
   top: 0;
   width: 100%;
   background: white;
-  padding: 15px 0;
+  padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   z-index: 1000;
 }
@@ -40,24 +37,22 @@
 .navbar ul {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 100px;
   list-style: none;
+  scroll-behavior: smooth;
 }
 
 .navbar a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .section {
   padding: 100px 20px;
   min-height: 60vh;
   margin-top: 60px;
-}
-
-.hero {
-  text-align: center;
 }
 
 .hero img {
