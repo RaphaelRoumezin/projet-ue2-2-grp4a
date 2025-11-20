@@ -1,3 +1,69 @@
+<?php
+    $statuts = [];
+
+    // Reception de formulaire
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $valide = true;
+
+        // Vérification des données reçues
+        $nom = $_POST['nom'] ?? '';
+        if ($nom == '') {
+            $valide = false;
+            $statuts[] = ["danger", "Le nom est obligatoire."];
+        }
+
+        $prenom = $_POST['prenom'] ?? '';
+        if ($prenom == '') {
+            $valide = false;
+            $statuts[] = ["danger", "Le prénom est obligatoire."];
+        }
+
+        $genre = $_POST['genre'] ?? 'n';
+        if (!in_array($genre, ['n', 'h', 'f', 'a', 'c'])) {
+            $valide = false;
+            $statuts[] = ["danger", "Le genre sélectionné n'est pas valide."];
+        }
+
+        $tel = $_POST['tel'] ?? '';
+        if ($tel == '') {
+            $valide = false;
+            $statuts[] = ["danger", "Le numéro de télépone est obligatoire."];
+        } else {
+            $tel = preg_replace("/[^0-9]/", '', $tel); // Ne garder que les numéros, supprimer espaces, tirets, etc.
+            if (preg_match("/^0?[1-9][0-9]{8}$/", $tel) !== 1) { // Vérifier que le numéro est valide (9 chiffres, peut commencer par 0)
+                $valide = false;
+                $statuts[] = ["danger", "Le numéro de télépone est invalide. (doit suivre le format français)"];
+            }
+        }
+
+        $email = $_POST['email'] ?? '';
+        if ($email == '') {
+            $valide = false;
+            $statuts[] = ["danger", "L'email est obligatoire."];
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $valide = false;
+            $statuts[] = ["danger", "L'email est invalide."];
+        }
+
+        $sujet = $_POST['subject'] ?? '';
+        if ($sujet == '') {
+            $valide = false;
+            $statuts[] = ["danger", "Le sujet est obligatoire."];
+        }
+
+        $message = $_POST['message'] ?? '';
+        if ($message == '') {
+            $valide = false;
+            $statuts[] = ["danger", "Le message est obligatoire."];
+        }
+
+        if ($valide == true) {
+            $statuts[] = ["success", "Votre message a été envoyé avec succès, mais n'arrivera jamais à destination car ceci est une démo."];
+        }
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,13 +81,18 @@
         form {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            grid-column-gap: 0px;
-            grid-row-gap: 0px;
+            grid-column-gap: 15px;
+            grid-row-gap: 10px;
         }
 
-        .zone-nom { grid-area: 1 / 1 / 2 / 2; }
-        .zone-prenom { grid-area: 1 / 2 / 2 / 3; }
+        .zone-statuts { grid-area: 1 / 1 / 2 / 3; }
+        .zone-email { grid-area: 4 / 1 / 5 / 3; }
+        .zone-subject { grid-area: 5 / 1 / 6 / 3; }
+        .zone-message { grid-area: 6 / 1 / 7 / 3; }
+        .zone-boutons {
+            grid-area: 7 / 2 / 8 / 3;
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -33,13 +104,53 @@
 
     <main class="section-etroite">
         <form method="post">
+            <div class="zone-statuts">
+                <?php foreach ($statuts as [$type, $message]) : ?>
+                    <div class="alert alert-<?= $type ?>" role="alert">
+                        <?= htmlspecialchars($message) ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
             <div class="zone-nom">
-                <label for="input-nom" class="form-label">Nom* :</label>
-                <input type="text" class="form-control" id="input-nom" placeholder="Dupont" required>
+                <label for="input-nom" class="form-label">Nom<span class="text-danger">*</span>:</label>
+                <input name="nom" type="text" class="form-control" id="input-nom" placeholder="Dupont" required value="<?= htmlspecialchars($nom ?? '') ?>">
             </div>
             <div class="zone-prenom">
-                <label for="input-prenom" class="form-label">Prénom* :</label>
-                <input type="text" class="form-control" id="input-prenom" placeholder="Jean" required>
+                <label for="input-prenom" class="form-label">Prénom<span class="text-danger">*</span>:</label>
+                <input name="prenom" type="text" class="form-control" id="input-prenom" placeholder="Jean" required>
+            </div>
+            <div class="zone-genre">
+                <label for="input-genre" class="form-label">Genre:</label>
+                <select name="genre" id="input-genre" class="form-select">
+                    <option value="n" selected></option>
+                    <option value="h">Homme</option>
+                    <option value="f">Femme</option>
+                    <option value="a">Autre</option>
+                    <option value="c">Croissant</option>
+                </select>
+            </div>
+            <div class="zone-tel">
+                <label for="input-tel" class="form-label">Téléphone<span class="text-danger">*</span>:</label>
+                <div class="input-group">
+                    <span class="input-group-text" >+33</span>
+                    <input name="tel" type="tel" class="form-control" id="input-tel" placeholder="X XX XX XX XX" required value="<?= htmlspecialchars($tel ?? '') ?>">
+                </div>
+            </div>
+            <div class="zone-email">
+                <label for="input-email" class="form-label">Email<span class="text-danger">*</span>:</label>
+                <input name="email" type="email" class="form-control" id="input-email" placeholder="jeandupont@gmail.com" required>
+            </div>
+            <div class="zone-subject">
+                <label for="input-subject" class="form-label">Sujet<span class="text-danger">*</span>:</label>
+                <input name="subject" type="text" class="form-control" id="input-subject" required>
+            </div>
+            <div class="zone-message">
+                <label for="input-message" class="form-label">Message<span class="text-danger">*</span>:</label>
+                <textarea name="message" name="message" id="input-message" class="form-control" rows="6"></textarea>
+            </div>
+            <div class="zone-boutons">
+                <input class="btn btn-outline-secondary" type="reset" value="Réinitialiser">
+                <button class="btn btn-primary" type="submit">Envoyer</button>
             </div>
         </form>
     </main>
