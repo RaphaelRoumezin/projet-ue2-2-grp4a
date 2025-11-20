@@ -16,3 +16,10 @@
 - email (VARCHAR(250)): Email de l'éditeur
 - sujet (TEXT): Sujet du message
 - content (TEXT): Contenu du message
+
+# Table reseaux
+- id (int, primary, autoincrement): Identifiant numérique
+- membre (int, references membre.id): Membre auquel appartient la connexion
+- nom (VARCHAR(20)): Nom du réseau social
+- icone (VARCHAR(100)): Chemin d'accès relatif vers l'icone du réseau social
+- url (VARCHAR(100)): Lien de la page du réseau social
