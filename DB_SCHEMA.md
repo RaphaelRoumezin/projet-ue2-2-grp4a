@@ -8,7 +8,7 @@
 
 # Table message
 - id (int, primary, autoincrement): Identifiant numérique du message
-- to (int, references membre.id): Destinataire du message
+- destinataire (int, references membre.id): Destinataire du message
 - nom (VARCHAR(100)): Nom de l'éditeur
 - prenom (VARCHAR(100)): Prénom de l'éditeur
 - genre (VARCHAR(2)): Genre de l'éditeur
