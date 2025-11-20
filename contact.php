@@ -1,21 +1,29 @@
 <?php
-    $staticDbPersonnes = [
-        "sduchanaud" => "Simon DUCHANAUD",
-        "echaudat" => "Ethan CHAUDAT",
-        "rroumezin" => "Raphaël ROUMEZIN"
-    ];
+    include "interne/db.php";
+
+    $statuts = [];
 
     // Récupération du destinataire
-    $toKey = $_GET['to'] ?? $_POST['to'] ?? '';
-    $toName = $staticDbPersonnes[$toKey] ?? '';
-    if ($toName == '') {
-        // Destinataire invalide, redirection vers la page principale
+    $name = $_GET['to'] ?? $_POST['to'] ?? '';
+    if ($name == '') {
+        // Destinataire non spécifié, redirection vers la page principale
         header("Location: index.php");
         http_response_code(303);
         exit();
     }
 
-    $statuts = [];
+    $query = $db->prepare("SELECT id, fullname FROM membre WHERE name = :name LIMIT 1");
+    if (!$query->execute(['name' => $name])) {
+        die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
+    }
+
+    $to = $query->fetch(PDO::FETCH_ASSOC);
+    if (!$to) {
+        // Destinataire non trouvé, redirection vers la page principale
+        header("Location: index.php");
+        http_response_code(303);
+        exit();
+    }
 
     // Reception de formulaire
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -74,7 +82,24 @@
         }
 
         if ($valide == true) {
-            $statuts[] = ["success", "Votre message a été envoyé avec succès, mais n'arrivera jamais à destination car ceci est une démo."];
+            // Insertion en base de données
+            $query = $db->prepare("INSERT INTO message (destinataire, nom, prenom, genre, tel, email, sujet, content) VALUES (:destinataire, :nom, :prenom, :genre, :tel, :email, :sujet, :content)");
+            $success = $query->execute([
+                'destinataire' => $to['id'],
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'genre' => $genre,
+                'tel' => $tel,
+                'email' => $email,
+                'sujet' => $sujet,
+                'content' => $message
+            ]);
+
+            if (!$success) {
+                die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
+            }
+
+            $statuts[] = ["success", "Votre message a été envoyé avec succès à ".$to["fullname"]." !"];
         }
 
     }
@@ -115,12 +140,12 @@
 <body>
     <header>
         <!-- Titre sur notre page -->
-        <h1 class="titre">Contacter <?= $toName ?></h1>
+        <h1 class="titre">Contacter <?= $to["fullname"] ?></h1>
     </header>
     <!-- rubriques nom prénom genres téléphone email sujet message -->
     <main class="section-etroite">
         <form method="post">
-            <input type="hidden" name="to" value="<?= htmlspecialchars($toKey) ?>">
+            <input type="hidden" name="to" value="<?= htmlspecialchars($name) ?>">
 
             <div class="zone-statuts">
                 <?php foreach ($statuts as [$type, $contenu]) : ?>
