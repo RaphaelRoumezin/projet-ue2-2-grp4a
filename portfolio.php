@@ -44,7 +44,7 @@
             <li><a id="link-projets" href="#projets">Mes projets</a></li>
             <li><a id="link-apropos" href="#apropos">A propos</a></li>
             <li><a id="link-competences" href="#competences">Mes compétences</a></li>
-            <li><a href="../contact.php?to=sduchanaud">Contact</a></li>
+            <li><a href="../contact.php?to=<?= $name ?>">Contact</a></li>
         </ul>
     </nav>
 
@@ -76,7 +76,7 @@
         <div class="project-description">
             <p>
                 Ceci est une description détaillée de mon projet.  
-                J’explique ici ce que j’ai fait, les technologies utilisées et l’objectif du projet.
+                J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
             </p>
         </div>
     </div>
