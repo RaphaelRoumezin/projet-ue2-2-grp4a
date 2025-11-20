@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Simon DUCHANAUD</title>
-      <link rel="stylesheet" href="portfolio.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio de Simon DUCHANAUD</title>
+  <link rel="stylesheet" href="portfolio.css">
 </head>
+
 <body>
-    
-<!-- Barre de navigation -->
+
+  <!-- Barre de navigation -->
   <nav class="navbar">
     <ul>
-      <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#projets">Mes projets</a></li>
-      <li><a href="#apropos">A propos</a></li>
-      <li><a href="#competences">Mes compétences</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a id="link-accueil" class="nav-link" href="#accueil">Accueil</a></li>
+      <li><a id="link-projets" class="nav-link" href="#projets">Mes projets</a></li>
+      <li><a id="link-apropos" class="nav-link" href="#apropos">A propos</a></li>
+      <li><a id="link-competences" class="nav-link" href="#competences">Mes compétences</a></li>
+      <li><a id="link-contact" class="nav-link" href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -23,8 +25,9 @@
   <section id="accueil" class="section hero img">
     <img src="../images/sduchanaud.jpg" alt="Ma photo" width="250">
     <div class="bio">
-        <h1>Bonjour, je suis Simon DUCHANAUD</h1>
-        <p>Je suis un jeune passionné en cybersécurité. J'aime le pentest et je cherche un stage dans des métiers de Red Team !</p>
+      <h1>Bonjour, je suis Simon DUCHANAUD</h1>
+      <p>Je suis un jeune passionné en cybersécurité. J'aime le pentest et je cherche un stage dans des métiers de Red
+        Team !</p>
     </div>
   </section>
 
@@ -59,7 +62,7 @@
     <p>Ta présentation, ton parcours, tes passions...</p>
   </section>
 
-    <!-- Section Mes compétences -->
+  <!-- Section Mes compétences -->
   <section id="competences" class="section">
     <h2>Mes compétences</h2>
     <p>Voici la liste de mes compétences acquises au cours de ma vie de GOAT...</p>
@@ -70,6 +73,32 @@
     <h2>Contact</h2>
     <p>Tu peux mettre un formulaire ici.</p>
   </section>
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
 
+    const options = {
+      root: null,
+      threshold: 0.5,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+
+          navLinks.forEach(link => link.classList.remove("active"));
+
+          const activeLink = document.querySelector(`#link-${id}`);
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+        }
+      });
+    }, options);
+
+    sections.forEach(section => observer.observe(section));
+  </script>
 </body>
+
 </html>
