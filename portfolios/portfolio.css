@@ -81,3 +81,46 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+.project-card {
+  background: #e8e8e8;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  margin: 40px auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1700px;
+}
+
+/* Partie du haut : image + texte à droite */
+.project-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.project-image {
+  width: 750px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.project-info h3 {
+  align-items: center;
+  /*margin: 0px;*/
+  font-size: 1.5rem;
+}
+
+.project-tags {
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Description en dessous */
+.project-description {
+  margin-top: 40px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
