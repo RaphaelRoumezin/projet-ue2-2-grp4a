@@ -13,11 +13,11 @@
   <!-- Barre de navigation -->
   <nav class="navbar">
     <ul>
-      <li><a id="link-accueil" class="nav-link" href="#accueil">Accueil</a></li>
-      <li><a id="link-projets" class="nav-link" href="#projets">Mes projets</a></li>
-      <li><a id="link-apropos" class="nav-link" href="#apropos">A propos</a></li>
-      <li><a id="link-competences" class="nav-link" href="#competences">Mes compétences</a></li>
-      <li><a id="link-contact" class="nav-link" href="#contact">Contact</a></li>
+      <li><a id="link-accueil" href="#accueil">Accueil</a></li>
+      <li><a id="link-projets" href="#projets">Mes projets</a></li>
+      <li><a id="link-apropos" href="#apropos">A propos</a></li>
+      <li><a id="link-competences" href="#competences">Mes compétences</a></li>
+      <li><a id="link-contact" href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -25,8 +25,9 @@
   <section id="accueil" class="section hero">
     <img src="../images/sduchanaud.jpg" alt="Ma photo" width="250">
     <div>
-        <h1>Bonjour, je suis Simon DUCHANAUD</h1>
-        <p>Je suis un jeune étudiant passionné en cybersécurité. J'aime le pentest et je cherche un stage dans les métiers de Red Team !</p>
+      <h1>Bonjour, je suis Simon DUCHANAUD</h1>
+      <p>Je suis un jeune étudiant passionné en cybersécurité. J'aime le pentest et je cherche un stage dans les métiers
+        de Red Team !</p>
     </div>
   </section>
 
@@ -76,25 +77,38 @@
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
 
-    const options = {
-      root: null,
-      threshold: 0.5,
-    };
+    let currentSection = null;
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
+      // Garder la dernière section visible
+      entries.filter(entry => entry.isIntersecting);
+      const entry = entries[entries.length - 1];
+      
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
 
-          navLinks.forEach(link => link.classList.remove("active"));
+        // Éviter les mises à jour redondantes
+        if (currentSection === id) return;
 
-          const activeLink = document.querySelector(`#link-${id}`);
-          if (activeLink) {
-            activeLink.classList.add("active");
+        // Enlever l'ancienne classe active
+        if (currentSection) {
+          const oldLink = document.querySelector(`#link-${currentSection}`);
+          if (oldLink) {
+            oldLink.classList.remove("active");
           }
         }
-      });
-    }, options);
+
+        currentSection = id;
+
+        const activeLink = document.querySelector(`#link-${id}`);
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+      }
+    }, {
+      root: null,
+      threshold: 1,
+    });
 
     sections.forEach(section => observer.observe(section));
   </script>

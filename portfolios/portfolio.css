@@ -1,3 +1,7 @@
+body {
+  scroll-behavior: smooth;
+}
+
 .hero {
   display: flex;
   align-items: center;
@@ -44,6 +48,10 @@
   font-size: 1.5rem;
 }
 
+.navbar a.active {
+  text-decoration: underline #3498db;
+}
+
 .section {
   padding: 100px 20px;
   min-height: 60vh;
@@ -75,10 +83,4 @@
 .card.reveal-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.nav-link.active {
-  border-bottom: 2px solid black;
-  padding-bottom: 5px;
-  color: #3498db;
 }
