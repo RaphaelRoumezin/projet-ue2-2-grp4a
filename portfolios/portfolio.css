@@ -12,18 +12,9 @@ body {
 
 .hero .text-block {
   max-width: 600px;
-  margin-top: 20px;
 }
 
-.hero-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  min-height: 80vh;
-  padding: 50px;
-}
-
-.navbar {
+.cool-navbar {
   position: fixed;
   top: 0;
   width: 100%;
@@ -33,22 +24,28 @@ body {
   z-index: 1000;
 }
 
-.navbar ul {
+.navbar-spacer {
+  height: 60px;
+  display: block;
+}
+
+.cool-navbar ul {
   display: flex;
   justify-content: center;
   gap: 100px;
   list-style: none;
   scroll-behavior: smooth;
+  margin: revert; /* Remove default bootstrap margin */
 }
 
-.navbar a {
+.cool-navbar a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-.navbar a.active {
+.cool-navbar a.active {
   text-decoration: underline #3498db;
 }
 
