@@ -21,7 +21,7 @@
     <main>
         <!-- Mise en place de "cartes" pour chacun des participants du groupe/ image, nom prénom, description, bouton -->
         <div class="cards">
-            <a href="portfolios/echaudat.html" class="lien-invisible">
+            <a href="portfolio.php?name=echaudat" class="lien-invisible">
                 <div class="card">
                     <img src="images/echaudat.jpg" class="card-img-top" alt="Ethan">
                     <div class="card-body">
@@ -51,7 +51,7 @@
                 </div>
             </a>
 
-            <a href="portfolios/rroumezin.html" class="lien-invisible">
+            <a href="portfolio.php?name=rroumezin" class="lien-invisible">
                 <div class="card">
                     <img src="images/rroumezin.jpg" class="card-img-top" alt="Raphaël ROUMEZIN">
                     <div class="card-body">
