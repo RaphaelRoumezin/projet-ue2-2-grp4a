@@ -1,3 +1,13 @@
+<?php
+    include "interne/db.php";
+
+    $query = $db->prepare("SELECT name, fullname, intro, photo, bs_color FROM membre");
+    if (!$query->execute()) {
+        die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
+    }
+
+    $membres = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,50 +31,21 @@
     <main>
         <!-- Mise en place de "cartes" pour chacun des participants du groupe/ image, nom prénom, description, bouton -->
         <div class="cards">
-            <a href="portfolio.php?name=echaudat" class="lien-invisible">
-                <div class="card">
-                    <img src="images/echaudat.jpg" class="card-img-top" alt="Ethan">
-                    <div class="card-body">
-                        <h5 class="card-title">Ethan CHAUDAT</h5>
-                        <p class="card-text">
-                            En formation cybersécurité, je développe mes compétences en protection,
-                            détection et réponse aux incidents.</p>
-                        <div class="d-grid">
-                            <button type="button" class="btn btn-secondary">Consulter le portfolio</button>
+            <?php foreach ($membres as $membre): ?>
+                <a href="portfolio.php?name=<?= htmlspecialchars($membre['name']) ?>" class="lien-invisible">
+                    <div class="card">
+                        <img src="<?= htmlspecialchars($membre['photo']) ?>" class="card-img-top"
+                            alt="Photo de <?= htmlspecialchars($membre['fullname']) ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($membre['fullname']) ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($membre['intro']) ?></p>
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-<?= htmlspecialchars($membre['bs_color']) ?>">Consulter le portfolio</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-
-            <a href="portfolio.php?name=sduchanaud" class="lien-invisible">
-                <div class="card">
-                    <img src="images/sduchanaud.jpg" class="card-img-top" alt="Simon">
-                    <div class="card-body">
-                        <h5 class="card-title">Simon DUCHANAUD</h5>
-                        <p class="card-text">Étudiant en cybersécurité, passionné par la défense des systèmes et le
-                            pentest.
-                            Découvrez mes projets et mon parcours.</p>
-                        <div class="d-grid">
-                            <button type="button" class="btn btn-primary">Consulter le portfolio</button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="portfolio.php?name=rroumezin" class="lien-invisible">
-                <div class="card">
-                    <img src="images/rroumezin.jpg" class="card-img-top" alt="Raphaël ROUMEZIN">
-                    <div class="card-body">
-                        <h5 class="card-title">Raphaël ROUMEZIN</h5>
-                        <p class="card-text">Passionné par les métiers de la cybersécurité, je suis toujours à la
-                            recherche
-                            de nouvelles opportunités d'apprendre.</p>
-                        <div class="d-grid">
-                            <button type="button" class="btn btn-secondary">Consulter le portfolio</button>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            <?php endforeach; ?>
         </div>
     </main>
 
