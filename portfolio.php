@@ -39,13 +39,11 @@
 
     <!-- Barre de navigation -->
     <nav class="cool-navbar">
-        <ul>
-            <li><a id="link-accueil" class="active" href="#">Accueil</a></li>
-            <li><a id="link-projets" href="#projets">Mes projets</a></li>
-            <li><a id="link-apropos" href="#apropos">A propos</a></li>
-            <li><a id="link-competences" href="#competences">Mes compétences</a></li>
-            <li><a href="contact.php?to=<?= $name ?>">Contact</a></li>
-        </ul>
+        <a id="link-accueil" class="active" href="#">Accueil</a>
+        <a id="link-projets" href="#projets">Mes projets</a>
+        <a id="link-apropos" href="#apropos">A propos</a>
+        <a id="link-competences" href="#competences">Mes compétences</a>
+        <a href="contact.php?to=<?= $name ?>">Contact</a>
     </nav>
 
     <div class="navbar-spacer"></div>
@@ -53,7 +51,7 @@
     <!-- Section Accueil -->
     <section id="accueil" class="section hero">
         <img src="<?= $personne["photo"] ?>" alt="Ma photo" width="250" class="fade-in">
-        <div class="fade-in delayed">
+        <div class="text-block fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
         </div>
