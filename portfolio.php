@@ -62,6 +62,18 @@
                 <span class="icon-download"></span>
                 Télécharger mon CV
             </button>
+            </a><br><br>
+            <a href="https://www.linkedin.com/in/simon-duchanaud">
+            <button type="button" class="btn btn-outline-secondary">
+                <span class="icon-linkedin"></span>
+                Mon LinkedIn
+            </button>
+            </a><br><br>
+            <a href="https://github.com/Stims-cmd">
+            <button type="button" class="btn btn-outline-secondary">
+                <span class="icon-github"></span>
+                Mon GitHub
+            </button>
             </a>
         </div>
     </section>
