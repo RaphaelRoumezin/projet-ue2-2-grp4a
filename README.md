@@ -15,7 +15,8 @@ Ce site présente les portfolios de Ethan CHAUDAT, Simon DUCHANAUD et Raphaël R
 - HTML5
 - CSS3
 - JavaScript
-- Bootstrap
+- Bootstrap CSS
+- PHP
 
 ## Organisation des fichiers
 - images/ → toutes les images
