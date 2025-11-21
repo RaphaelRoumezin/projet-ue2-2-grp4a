@@ -69,7 +69,24 @@
 
             <div class="project-info">
                 <h3>Projet ISR 1</h3>
-                <p class="project-tags">Techniques de sécurisation ISR</p>
+                <p class="project-tags">Introduction à la cybersécurité & sécurité ISR </p>
+            </div>
+        </div>
+
+        <div class="project-description">
+            <p>
+                Ceci est une description détaillée de mon projet.  
+                J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+            </p>
+        </div>
+    </div>
+        <div class="project-card">
+        <div class="project-top">
+            <img src="images/Projet2.png " alt="Projet 2" class="project-image">
+
+            <div class="project-info">
+                <h3>Projet ISR 2</h3>
+                <p class="project-tags">Techniques d'administration & supervision ISR</p>
             </div>
         </div>
 
@@ -82,17 +99,21 @@
     </div>
     </section>
 
-    <!-- Section À propos -->
-    <section id="apropos" class="section">
-        <h2>À propos</h2>
-        <p>Ta présentation, ton parcours, tes passions...</p>
-    </section>
+
 
     <!-- Section Mes compétences -->
     <section id="competences" class="section">
         <h2>Mes compétences</h2>
         <p>Voici la liste de mes compétences acquises au cours de ma vie de GOAT...</p>
     </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="section">
+        <h2>À propos</h2>
+        <p>Ta présentation, ton parcours, tes passions...</p>
+    </section>
+
+
 
 
     <script>
