@@ -52,8 +52,8 @@
 
     <!-- Section Accueil -->
     <section id="accueil" class="section hero">
-        <img src="<?= $personne["photo"] ?>" alt="Ma photo" width="250">
-        <div>
+        <img src="<?= $personne["photo"] ?>" alt="Ma photo" width="250" class="fade-in">
+        <div class="fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
         </div>
