@@ -41,8 +41,8 @@
     <nav class="cool-navbar">
         <a id="link-accueil" class="active" href="#">Accueil</a>
         <a id="link-projets" href="#projets">Mes projets</a>
-        <a id="link-apropos" href="#apropos">A propos</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
+        <a id="link-apropos" href="#apropos">A propos</a>
         <a href="contact.php?to=<?= $name ?>">Contact</a>
     </nav>
 
