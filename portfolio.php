@@ -43,6 +43,7 @@
     <nav class="cool-navbar">
         <a id="link-accueil" href="#">Accueil</a>
         <a id="link-projets" href="#projets">Mes projets</a>
+        <a id="link-experiences" href="#experiences">Mes expériences</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
         <a id="link-apropos" href="#apropos">A propos</a>
         <a href="contact.php?to=<?= $name ?>">Contact</a>
@@ -84,6 +85,7 @@
                 </p>
             </div>
         </div>
+
         <div class="project-card">
             <div class="project-top">
                 <img src="images/Projet2.png " alt="Projet 2" class="project-image">
@@ -101,9 +103,31 @@
                 </p>
             </div>
         </div>
+
+        <div class="project-card">
+            <div class="project-top">
+                <img src="images/Projet3.png " alt="Projet 3" class="project-image">
+
+                <div class="project-info">
+                    <h3>Projet ISR 3</h3>
+                    <p class="project-tags">Programmation et DevSecOps</p>
+                </div>
+            </div>
+
+            <div class="project-description">
+                <p>
+                    Notre projet est donc la réalisation du site sur lequel vous êtes actuellement.
+                    Vous avez seulement l'image d'accueil ici, mais vous pouvons donc tout observer par vous même.
+                </p>
+            </div>
+        </div>
     </section>
 
-
+    <!-- Section Mes expériences -->
+    <section id="experiences" class="section">
+        <h2>Mes expériences</h2>
+        <p>Expériences professionnelles et personnelles</p>
+    </section>
 
     <!-- Section Mes compétences -->
     <section id="competences" class="section">
@@ -116,6 +140,8 @@
         <h2>À propos</h2>
         <p>Ta présentation, ton parcours, tes passions...</p>
     </section>
+
+    
 
 
 
