@@ -66,11 +66,6 @@
         </div>
     </section>
 
-
-    
-    
-    
-    
     <!-- Section Projets -->
     <section id="projets" class="section">
         <h2>Mes Projets</h2>
@@ -83,7 +78,7 @@
                     <h3></span>Projet 1</h3>
                     <p class="project-tags">Introduction à la cybersécurité & sécurité ISR </p>
                 </div>
-                <div class="icon-network"></div>
+                <div class="icon-network icon"></div>
             </div>
 
             <div class="project-description">
@@ -102,7 +97,8 @@
                     <h3>Projet 2</h3>
                     <p class="project-tags">Techniques d'administration & supervision ISR</p>
                 </div>
-                <div class="icon-network"></div>
+                
+                <div class="icon icon-network"></div>
             </div>
             
             <div class="project-description">
@@ -113,15 +109,15 @@
             </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card fade-in paused">
             <div class="project-top">
-                <img src="images/Projet3.png " alt="Projet 3" class="project-image">
+                <img src="images/Projet3.png" alt="Projet 3" class="project-image">
 
                 <div class="project-info">
                     <h3>Projet 3</h3>
                     <p class="project-tags">Programmation et DevSecOps</p>
                 </div>
-                <div class="icon-code-xml"></div>
+                <div class="icon icon-code-xml"></div>
             </div>
 
             <div class="project-description">

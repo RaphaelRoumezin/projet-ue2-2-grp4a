@@ -91,7 +91,16 @@ body {
 .project-top {
   display: flex;
   align-items: center;
-  gap: 100px;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.project-top .icon {
+  align-self: start;
+}
+
+.project-info {
+  flex: 1;
 }
 
 .project-image {
