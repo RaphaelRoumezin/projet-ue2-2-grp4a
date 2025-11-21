@@ -43,6 +43,7 @@
     <nav class="cool-navbar">
         <a id="link-accueil" class="active" href="#">Accueil</a>
         <a id="link-projets" href="#projets">Mes projets</a>
+        <a id="link-experiences" href="#experiences">Mes expériences</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
         <a id="link-apropos" href="#apropos">A propos</a>
         <a href="contact.php?to=<?= $name ?>">Contact</a>
@@ -121,7 +122,11 @@
     </div>
     </section>
 
-
+    <!-- Section Mes expériences -->
+    <section id="experiences" class="section">
+        <h2>Mes expériences</h2>
+        <p>Expériences professionnelles et personnelles</p>
+    </section>
 
     <!-- Section Mes compétences -->
     <section id="competences" class="section">
@@ -134,6 +139,8 @@
         <h2>À propos</h2>
         <p>Ta présentation, ton parcours, tes passions...</p>
     </section>
+
+    
 
 
 
