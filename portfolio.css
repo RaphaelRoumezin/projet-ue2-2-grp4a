@@ -121,12 +121,16 @@ body {
 
 /* Animation pour l'apparition des choses */
 .fade-in {
-	opacity: 1;
+	opacity: 0;
 	animation-name: fadeIn;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
 	animation-duration: 800ms;
   animation-fill-mode: forwards;
+}
+
+.fade-in.paused {
+  animation-play-state: paused;
 }
 
 .fade-in.delayed {
