@@ -56,13 +56,20 @@
         <div class="text-block fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
+            <a href="CV/CVsduchanaud.pdf">
             <button type="button" class="btn btn-outline-primary">
                 <span class="icon-download"></span>
                 Télécharger mon CV
             </button>
+            </a>
         </div>
     </section>
 
+
+    
+    
+    
+    
     <!-- Section Projets -->
     <section id="projets" class="section">
         <h2>Mes Projets</h2>
