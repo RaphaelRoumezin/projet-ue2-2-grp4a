@@ -95,6 +95,24 @@
             </p>
         </div>
     </div>
+
+            <div class="project-card">
+        <div class="project-top">
+            <img src="images/Projet3.png " alt="Projet 3" class="project-image">
+
+            <div class="project-info">
+                <h3>Projet ISR 3</h3>
+                <p class="project-tags">Programmation et DevSecOps</p>
+            </div>
+        </div>
+
+        <div class="project-description">
+            <p>
+                Notre projet est donc la réalisation du site sur lequel vous êtes actuellement.
+                Vous avez seulement l'image d'accueil ici, mais vous pouvons donc tout observer par vous même.
+            </p>
+        </div>
+    </div>
     </section>
 
 
