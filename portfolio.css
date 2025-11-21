@@ -7,7 +7,6 @@ body {
   align-items: center;
   justify-content: center;
   gap: 50px;
-  margin: 50px;
 }
 
 .hero .text-block {
@@ -19,23 +18,20 @@ body {
   top: 0;
   width: 100%;
   background: white;
-  padding: 10px 0;
+  height: 80px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  margin: revert; /* Remove default bootstrap margin */
 }
 
 .navbar-spacer {
-  height: 60px;
+  height: 80px;
   display: block;
-}
-
-.cool-navbar ul {
-  display: flex;
-  justify-content: center;
-  gap: 100px;
-  list-style: none;
-  scroll-behavior: smooth;
-  margin: revert; /* Remove default bootstrap margin */
 }
 
 .cool-navbar a {
@@ -52,7 +48,6 @@ body {
 .section {
   padding: 100px 20px;
   min-height: 60vh;
-  margin-top: 60px;
 }
 
 .hero img {
@@ -122,4 +117,30 @@ body {
   margin-top: 40px;
   font-size: 1rem;
   line-height: 1.6;
+}
+
+/* Animation pour l'apparition des choses */
+.fade-in {
+	opacity: 1;
+	animation-name: fadeIn;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-duration: 800ms;
+  animation-fill-mode: forwards;
+}
+
+.fade-in.delayed {
+  opacity: 0;
+  animation-delay: 200ms;
+}
+
+@keyframes fadeIn {
+	0% {
+    transform: translateY(-20px);
+		opacity: 0;
+	}
+	100% {
+    transform: translateY(0);
+		opacity: 1;
+	}
 }
