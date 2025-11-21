@@ -68,7 +68,7 @@
     <section id="projets" class="section">
         <h2>Mes Projets</h2>
 
-        <div class="project-card">
+        <div class="project-card fade-in paused">
             <div class="project-top">
                 <img src="images/Projet1.png" alt="Projet 1" class="project-image">
 
@@ -86,9 +86,9 @@
             </div>
         </div>
 
-        <div class="project-card">
+        <div class="project-card fade-in paused">
             <div class="project-top">
-                <img src="images/Projet2.png " alt="Projet 2" class="project-image">
+                <img src="images/Projet2.png" alt="Projet 2" class="project-image">
 
                 <div class="project-info">
                     <h3>Projet ISR 2</h3>
@@ -149,6 +149,7 @@
     <script>
         const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".cool-navbar a");
+        const pausedAnimations = document.querySelectorAll(".fade-in.paused");
 
         let currentSection = null;
 
@@ -199,6 +200,20 @@
             el.addEventListener("click", (e) => {
                 updateActiveLink(e.target.id.replace("link-", ""));
             });
+        });
+
+        // Créer un IntersectionObserver pour détecter quand les éléments entrent dans le viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove("paused");
+                    observer.unobserve(entry.target); // Arrêter d'observer une fois l'animation jouée
+                }
+            });
+        }, { threshold: 0.5 }); // Déclencher quand 10% de l'élément est visible
+
+        pausedAnimations.forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
