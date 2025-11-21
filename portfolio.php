@@ -41,7 +41,7 @@
 
     <!-- Barre de navigation -->
     <nav class="cool-navbar">
-        <a id="link-accueil" class="active" href="#">Accueil</a>
+        <a id="link-accueil" href="#">Accueil</a>
         <a id="link-projets" href="#projets">Mes projets</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
         <a id="link-apropos" href="#apropos">A propos</a>
@@ -68,39 +68,39 @@
         <h2>Mes Projets</h2>
 
         <div class="project-card">
-        <div class="project-top">
-            <img src="images/Projet1.png" alt="Projet 1" class="project-image">
+            <div class="project-top">
+                <img src="images/Projet1.png" alt="Projet 1" class="project-image">
 
-            <div class="project-info">
-                <h3>Projet ISR 1</h3>
-                <p class="project-tags">Introduction à la cybersécurité & sécurité ISR </p>
+                <div class="project-info">
+                    <h3>Projet ISR 1</h3>
+                    <p class="project-tags">Introduction à la cybersécurité & sécurité ISR </p>
+                </div>
+            </div>
+
+            <div class="project-description">
+                <p>
+                    Ceci est une description détaillée de mon projet.  
+                    J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+                </p>
             </div>
         </div>
-
-        <div class="project-description">
-            <p>
-                Ceci est une description détaillée de mon projet.  
-                J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
-            </p>
-        </div>
-    </div>
         <div class="project-card">
-        <div class="project-top">
-            <img src="images/Projet2.png " alt="Projet 2" class="project-image">
+            <div class="project-top">
+                <img src="images/Projet2.png " alt="Projet 2" class="project-image">
 
-            <div class="project-info">
-                <h3>Projet ISR 2</h3>
-                <p class="project-tags">Techniques d'administration & supervision ISR</p>
+                <div class="project-info">
+                    <h3>Projet ISR 2</h3>
+                    <p class="project-tags">Techniques d'administration & supervision ISR</p>
+                </div>
+            </div>
+
+            <div class="project-description">
+                <p>
+                    Ceci est une description détaillée de mon projet.  
+                    J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+                </p>
             </div>
         </div>
-
-        <div class="project-description">
-            <p>
-                Ceci est une description détaillée de mon projet.  
-                J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
-            </p>
-        </div>
-    </div>
     </section>
 
 
@@ -124,7 +124,7 @@
         const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".cool-navbar a");
 
-        let currentSection = "accueil";
+        let currentSection = null;
 
         function updateActiveLink(id) {
             // Enlever l'ancienne classe active
@@ -143,26 +143,31 @@
                 }
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            // Garder la dernière section visible
-            entries.filter(entry => entry.isIntersecting);
-            const entry = entries[entries.length - 1];
-
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-
-                // Éviter les mises à jour redondantes
-                if (currentSection === id) return;
-
-                updateActiveLink(id);
-            }
-        }, {
-            root: null,
-            threshold: 0.99,
+        const offsets = {};
+        sections.forEach(section => {
+            offsets[section.id] = section.offsetTop;
         });
+        // Mettre la section accueil comme la plus haute
+        offsets["accueil"] = -1;
 
+        function onScroll() {
+            const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
-        sections.forEach(section => observer.observe(section));
+            let newSection = currentSection;
+            for (const [id, offset] of Object.entries(offsets)) {
+                if (scrollPosition >= offset) {
+                    newSection = id;
+                }
+            }
+
+            if (newSection !== currentSection) {
+                updateActiveLink(newSection);
+            }
+        }
+
+        // Enregistrer l'événement de scroll et exécuter une fois au chargement
+        window.addEventListener("scroll", onScroll);
+        onScroll();
 
         navLinks.forEach(el => {
             el.addEventListener("click", (e) => {
