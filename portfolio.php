@@ -42,8 +42,8 @@
         <ul>
             <li><a id="link-accueil" class="active" href="#">Accueil</a></li>
             <li><a id="link-projets" href="#projets">Mes projets</a></li>
-            <li><a id="link-apropos" href="#apropos">A propos</a></li>
             <li><a id="link-competences" href="#competences">Mes compétences</a></li>
+            <li><a id="link-apropos" href="#apropos">A propos</a></li>
             <li><a href="contact.php?to=<?= $name ?>">Contact</a></li>
         </ul>
     </nav>
