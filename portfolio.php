@@ -45,7 +45,6 @@
         <a id="link-projets" href="#projets">Mes projets</a>
         <a id="link-experiences" href="#experiences">Mes expériences</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
-        <a id="link-apropos" href="#apropos">A propos</a>
         <a href="contact.php?to=<?= $name ?>">Contact</a>
     </nav>
 
@@ -152,17 +151,6 @@
         <h2>Mes compétences</h2>
         <p>Voici la liste de mes compétences acquises au cours de ma vie de GOAT...</p>
     </section>
-
-    <!-- Section À propos -->
-    <section id="apropos" class="section">
-        <h2>À propos</h2>
-        <p>Ta présentation, ton parcours, tes passions...</p>
-    </section>
-
-    
-
-
-
 
     <script>
         const sections = document.querySelectorAll("section");
