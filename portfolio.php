@@ -39,21 +39,19 @@
 
     <!-- Barre de navigation -->
     <nav class="cool-navbar">
-        <ul>
-            <li><a id="link-accueil" class="active" href="#">Accueil</a></li>
-            <li><a id="link-projets" href="#projets">Mes projets</a></li>
-            <li><a id="link-apropos" href="#apropos">A propos</a></li>
-            <li><a id="link-competences" href="#competences">Mes compétences</a></li>
-            <li><a href="contact.php?to=<?= $name ?>">Contact</a></li>
-        </ul>
+        <a id="link-accueil" class="active" href="#">Accueil</a>
+        <a id="link-projets" href="#projets">Mes projets</a>
+        <a id="link-competences" href="#competences">Mes compétences</a>
+        <a id="link-apropos" href="#apropos">A propos</a>
+        <a href="contact.php?to=<?= $name ?>">Contact</a>
     </nav>
 
     <div class="navbar-spacer"></div>
 
     <!-- Section Accueil -->
     <section id="accueil" class="section hero">
-        <img src="<?= $personne["photo"] ?>" alt="Ma photo" width="250">
-        <div>
+        <img src="<?= $personne["photo"] ?>" alt="Ma photo" width="250" class="fade-in">
+        <div class="text-block fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
             <button type="button" class="btn btn-outline-primary">
@@ -73,7 +71,24 @@
 
             <div class="project-info">
                 <h3>Projet ISR 1</h3>
-                <p class="project-tags">Techniques de sécurisation ISR</p>
+                <p class="project-tags">Introduction à la cybersécurité & sécurité ISR </p>
+            </div>
+        </div>
+
+        <div class="project-description">
+            <p>
+                Ceci est une description détaillée de mon projet.  
+                J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+            </p>
+        </div>
+    </div>
+        <div class="project-card">
+        <div class="project-top">
+            <img src="images/Projet2.png " alt="Projet 2" class="project-image">
+
+            <div class="project-info">
+                <h3>Projet ISR 2</h3>
+                <p class="project-tags">Techniques d'administration & supervision ISR</p>
             </div>
         </div>
 
@@ -86,17 +101,21 @@
     </div>
     </section>
 
-    <!-- Section À propos -->
-    <section id="apropos" class="section">
-        <h2>À propos</h2>
-        <p>Ta présentation, ton parcours, tes passions...</p>
-    </section>
+
 
     <!-- Section Mes compétences -->
     <section id="competences" class="section">
         <h2>Mes compétences</h2>
         <p>Voici la liste de mes compétences acquises au cours de ma vie de GOAT...</p>
     </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="section">
+        <h2>À propos</h2>
+        <p>Ta présentation, ton parcours, tes passions...</p>
+    </section>
+
+
 
 
     <script>
