@@ -73,9 +73,10 @@
                 <img src="images/Projet1.png" alt="Projet 1" class="project-image">
 
                 <div class="project-info">
-                    <h3>Projet ISR 1</h3>
+                    <h3></span>Projet 1</h3>
                     <p class="project-tags">Introduction à la cybersécurité & sécurité ISR </p>
                 </div>
+                <div class="icon-network"></div>
             </div>
 
             <div class="project-description">
@@ -91,11 +92,12 @@
                 <img src="images/Projet2.png " alt="Projet 2" class="project-image">
 
                 <div class="project-info">
-                    <h3>Projet ISR 2</h3>
+                    <h3>Projet 2</h3>
                     <p class="project-tags">Techniques d'administration & supervision ISR</p>
                 </div>
+                <div class="icon-network"></div>
             </div>
-
+            
             <div class="project-description">
                 <p>
                     Ceci est une description détaillée de mon projet.  
@@ -109,9 +111,10 @@
                 <img src="images/Projet3.png " alt="Projet 3" class="project-image">
 
                 <div class="project-info">
-                    <h3>Projet ISR 3</h3>
+                    <h3>Projet 3</h3>
                     <p class="project-tags">Programmation et DevSecOps</p>
                 </div>
+                <div class="icon-code-xml"></div>
             </div>
 
             <div class="project-description">
