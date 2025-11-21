@@ -56,6 +56,10 @@
         <div>
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
+            <button type="button" class="btn btn-outline-primary">
+            <img src="icones/icon-download.svg"/>
+            Télécharger mon CV
+            </button>
         </div>
     </section>
 
