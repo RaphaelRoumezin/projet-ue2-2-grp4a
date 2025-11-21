@@ -32,6 +32,8 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Relation avec lucide icons -->
+    <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css" />
     <link rel="stylesheet" href="portfolio.css">
 </head>
 
@@ -54,6 +56,10 @@
         <div class="text-block fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
+            <button type="button" class="btn btn-outline-primary">
+                <span class="icon-download"></span>
+                Télécharger mon CV
+            </button>
         </div>
     </section>
 
