@@ -24,3 +24,17 @@
 - nom (VARCHAR(20)): Nom du réseau social
 - icone (VARCHAR(100)): Chemin d'accès relatif vers l'icone du réseau social
 - url (VARCHAR(100)): Lien de la page du réseau social
+
+# Table competence
+- id (int, primary, autoincrement): Identifiant numérique
+- membre (int, references membre.id): Membre auquel appartient la compétence
+- nom (VARCHAR(100)): Nom de la compétence
+
+# Table experience
+- id (int, primary, autoincrement): Identifiant numérique
+- membre (int, references membre.id): Membre auquel appartient l'expérience
+- image (VARCHAR(100)): Image de la carte (comme le logo de l'entreprise)
+- entreprise (VARCHAR(150)): Nom de l'entreprise
+- poste (VARCHAR(150)): Intitulé de poste
+- duree (VARCHAR(50)): Temps d'occupation
+- description (TEXT): Description de l'experience
