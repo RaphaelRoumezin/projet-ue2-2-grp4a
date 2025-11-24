@@ -59,7 +59,7 @@
     <!-- Relation avec notre css -->
     <link rel="stylesheet" href="../index.css">
     <title>Connexion au dashboard</title>
-    <!-- CSS directement dans notre contact, mise en place d'une "grille" -->
+    <!-- CSS directement dans notre page de login, mise en place d'une "grille" -->
     <style>
         form {
             display: grid;
@@ -79,7 +79,6 @@
         <!-- Titre sur notre page -->
         <h1 class="titre">Connexion au dashboard</h1>
     </header>
-    <!-- rubriques nom prénom genres téléphone email sujet message -->
     <main class="section-etroite">
         <form method="post">
             <div class="zone-statuts">
