@@ -9,7 +9,7 @@
         exit();
     }
 
-    $query = $db->prepare("SELECT fullname, description, photo FROM membre WHERE name = :name LIMIT 1");
+    $query = $db->prepare("SELECT id, fullname, description, photo FROM membre WHERE name = :name LIMIT 1");
     if (!$query->execute(['name' => $name])) {
         die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
     }
@@ -21,6 +21,11 @@
         http_response_code(303);
         exit();
     }
+
+    $stmt = $db->prepare("SELECT * FROM reseau_social WHERE membre = ?");
+    $stmt->execute([$personne['id']]);
+
+    $reseaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -56,23 +61,20 @@
         <div class="text-block fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
-
+            
                 <div class="buttons-colonne">
-                    <a href="CV/<?= $name ?>.pdf" download class="btn btn-outline-primary">
+                    <a href="CV/<?= $name ?>.pdf" target="_blank" class="btn btn-outline-primary">
                         <span class="icon-download"></span>
                         Télécharger mon CV
                     </a>
-
-                    <a href="https://www.linkedin.com/in/simon-duchanaud" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-linkedin"></span>
-                        Mon LinkedIn
+                    <?php foreach ($reseaux as $reseau): ?>
+                    <a href="<?= $reseau['url']?>" target="_blank" class="btn btn-outline-secondary">
+                        <span class="icon-<?= $reseau['icone'] ?>"></span>
+                        <?= $reseau['nom']?>
                     </a>
-
-                    <a href="https://github.com/Stims-cmd" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-github"></span>
-                        Mon GitHub
-                    </a>
+                    <?php endforeach; ?>
                 </div>
+            
         </div>
     </section>
 
@@ -93,8 +95,13 @@
 
             <div class="project-description">
                 <p>
-                    Ceci est une description détaillée de mon projet.  
-                    J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+                    Dans le cadre de ce projet, j'ai <strong>conçu</strong> et <strong>déployé</strong> une architecture réseau d'entreprise segmentée afin de renforcer la 
+                    sécurité en <strong>cloisonnant</strong> les différents services. J'ai <strong>installé</strong> et <strong>configuré</strong> des services réseau essentiels, tels que 
+                    <strong>Active Directory (AD), DNS et DHCP,</strong> en les <strong>adaptant</strong> aux besoins spécifiques de l'entreprise.
+                    J'ai également mis en place des <strong>règles de communication inter-zones</strong> et configuré un <strong>firewall</strong> pour sécuriser 
+                    l'infrastructure tout en assurant un <strong>fonctionnement fluide</strong> et efficace des services internes et externes.
+                    Ce projet m'a permis de développer mes compétences techniques en <strong>administration réseau et sécurité</strong>, ainsi que 
+                    mes qualités professionnelles telles que l'implication dans le <strong>travail en équipe</strong>.
                 </p>
             </div>
         </div>
