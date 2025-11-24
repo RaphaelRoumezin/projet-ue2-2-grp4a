@@ -22,7 +22,7 @@
         exit();
     }
 
-    $stmt = $db->prepare("SELECT url FROM reseau_social WHERE membre = ?");
+    $stmt = $db->prepare("SELECT * FROM reseau_social WHERE membre = ?");
     $stmt->execute([2]);
 
     $reseaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -69,15 +69,10 @@
                     </a>
                     <?php foreach ($reseaux as $reseau): ?>
                     <a href="<?= $reseau['url']?>" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-linkedin"></span>
-                        Mon LinkedIn
+                        <span class="icon-<?= $reseau['icone'] ?>"></span>
+                        <?= $reseau['nom']?>
                     </a>
                     <?php endforeach; ?>
-
-                    <a href="https://github.com/Stims-cmd" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-github"></span>
-                        Mon GitHub
-                    </a>
                 </div>
             
         </div>
