@@ -95,8 +95,13 @@
 
             <div class="project-description">
                 <p>
-                    Ceci est une description détaillée de mon projet.  
-                    J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+                    Dans le cadre de ce projet, j'ai <strong>conçu</strong> et <strong>déployé</strong> une architecture réseau d'entreprise segmentée afin de renforcer la 
+                    sécurité en <strong>cloisonnant</strong> les différents services. J'ai <strong>installé</strong> et <strong>configuré</strong> des services réseau essentiels, tels que 
+                    <strong>Active Directory (AD), DNS et DHCP,</strong> en les <strong>adaptant</strong> aux besoins spécifiques de l'entreprise.
+                    J'ai également mis en place des <strong>règles de communication inter-zones</strong> et configuré un <strong>firewall</strong> pour sécuriser 
+                    l'infrastructure tout en assurant un <strong>fonctionnement fluide</strong> et efficace des services internes et externes.
+                    Ce projet m'a permis de développer mes compétences techniques en <strong>administration réseau et sécurité</strong>, ainsi que 
+                    mes qualités professionnelles telles que l'implication dans le <strong>travail en équipe</strong>.
                 </p>
             </div>
         </div>
