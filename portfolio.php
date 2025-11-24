@@ -21,6 +21,11 @@
         http_response_code(303);
         exit();
     }
+
+    $stmt = $db->prepare("SELECT url FROM reseau_social WHERE membre = ?");
+    $stmt->execute([2]);
+
+    $reseaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -56,23 +61,25 @@
         <div class="text-block fade-in delayed">
             <h1>Bonjour, je suis <?= $personne["fullname"] ?></h1>
             <p><?= $personne["description"] ?></p>
-
+            
                 <div class="buttons-colonne">
-                    <a href="CV/<?= $name ?>.pdf" download class="btn btn-outline-primary">
+                    <a href="CV/<?= $name ?>.pdf" target="_blank" class="btn btn-outline-primary">
                         <span class="icon-download"></span>
                         Télécharger mon CV
                     </a>
-
-                    <a href="https://www.linkedin.com/in/simon-duchanaud" target="_blank" class="btn btn-outline-secondary">
+                    <?php foreach ($reseaux as $reseau): ?>
+                    <a href="<?= $reseau['url']?>" target="_blank" class="btn btn-outline-secondary">
                         <span class="icon-linkedin"></span>
                         Mon LinkedIn
                     </a>
+                    <?php endforeach; ?>
 
                     <a href="https://github.com/Stims-cmd" target="_blank" class="btn btn-outline-secondary">
                         <span class="icon-github"></span>
                         Mon GitHub
                     </a>
                 </div>
+            
         </div>
     </section>
 
