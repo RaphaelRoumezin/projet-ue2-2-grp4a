@@ -35,8 +35,9 @@ footer {
 }
 
 .card-longue {
-  width: 1155px;
-  margin-left: 1.5%;
+    width: 1155px;
+    margin-left: 1.5%;
+    margin-top: 50px;
 }
 
 .images-text {

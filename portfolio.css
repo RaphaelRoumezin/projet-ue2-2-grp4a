@@ -165,3 +165,34 @@ body {
 		opacity: 1;
 	}
 }
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.skill {
+    flex: 1 1 calc(20% - 10px);
+    background: #f4f4f4;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 6px;
+    transition: transform 0.25s ease;
+}
+
+
+.skill:hover {
+    transform: translateX(5px);
+}
+
+
+
+
+
+
+
+
+
+

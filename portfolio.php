@@ -146,9 +146,34 @@
     </section>
 
     <!-- Section Mes compétences -->
+    
     <section id="competences" class="section">
         <h2>Mes compétences</h2>
-        <p>Voici la liste de mes compétences acquises au cours de ma vie de GOAT...</p>
+        <p>Voici la liste de mes compétences acquises au cours de ma vie</p>
+    <div class="skills-container">
+    <div class="skill"> HTML</div>
+    <div class="skill"> CSS</div>
+    <div class="skill"> Réseau</div>
+    <div class="skill"> PHP</div>
+    <div class="skill"> MySQL</div>
+    <div class="skill"> Croissantage</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+    <div class="skill"> Git</div>
+
+    
+    </div>
     </section>
 
     <script>
