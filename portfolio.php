@@ -120,8 +120,13 @@
             
             <div class="project-description">
                 <p>
-                    Ceci est une description détaillée de mon projet.  
-                    J'explique ici ce que j'ai fait, les technologies utilisées et l'objectif du projet.
+                    Dans le cadre de ce projet, j'ai <strong>analysé un réseau pour identifier ses failles et sécuriser l'infrastructure</strong> 
+                    face à la montée des cyberattaques. J'ai configuré un réseau sécurisé, <strong>filtré le trafic utilisateur</strong>, déployé 
+                    une <strong>solution de supervision SIEM avec Wazuh</strong>, et <strong>installé un proxy SSL</strong> pour protéger les communications chiffrées.
+                    Ce projet m'a permis d'acquérir une approche complète de la sécurité réseau, de la <strong>détection des vulnérabilités</strong> 
+                    à la surveillance et l'analyse des événements de sécurité. J'ai ainsi développé mes compétences techniques 
+                    en <strong>sécurisation de réseau, exploitation de vulnérabilités, administration de SIEM et gestion des communications 
+                    sécurisées</strong>.
                 </p>
             </div>
         </div>
@@ -139,8 +144,16 @@
 
             <div class="project-description">
                 <p>
-                    Notre projet est donc la réalisation du site sur lequel vous êtes actuellement.
-                    Vous avez seulement l'image d'accueil ici, mais vous pouvons donc tout observer par vous même.
+                    Dans le cadre de ce projet, j'ai conçu et <strong>développé</strong> mon propre cyberfolio, un <strong>portfolio numérique sécurisé</strong>, 
+                    afin de présenter mes compétences en <strong>développement web full stack</strong>. J'ai maîtrisé les langages <strong>frontend 
+                    (HTML, CSS, JavaScript)</strong> et <strong>backend (PHP, MySQL, Python/C)</strong>, et j'ai installé et configuré un <strong>environnement 
+                    de travail local</strong> complet avec serveur web et éditeur de code. J'ai développé des <strong>pages statiques et dynamiques</strong>, 
+                    en intégrant des <strong>bases de données MySQL</strong> pour gérer du contenu de <strong>manière interactive</strong>. J'ai également appliqué 
+                    les bonnes pratiques de sécurité web, incluant le <strong>hachage des mots de passe</strong>, la <strong>validation des entrées</strong> et la 
+                    <strong>sécurisation des requêtes SQL</strong>. Pour approfondir mes compétences, j'ai <strong>exploité des API</strong> (comme "Have I Been Pwned") 
+                    et développé des <strong>outils de détection cryptographique</strong>. Ce projet m'a permis de structurer et valoriser mes compétences techniques 
+                    tout en développant des savoir-faire professionnels : <strong>gestion de projet en mode agile, travail en équipe, présentation des choix techniques 
+                    lors de soutenances, et constitution d'un portfolio professionnel</strong> prêt à être présenté sur le marché du travail.
                 </p>
             </div>
         </div>
