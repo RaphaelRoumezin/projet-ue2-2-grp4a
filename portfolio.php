@@ -9,7 +9,7 @@
         exit();
     }
 
-    $query = $db->prepare("SELECT fullname, description, photo FROM membre WHERE name = :name LIMIT 1");
+    $query = $db->prepare("SELECT id, fullname, description, photo FROM membre WHERE name = :name LIMIT 1");
     if (!$query->execute(['name' => $name])) {
         die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
     }
@@ -22,8 +22,8 @@
         exit();
     }
 
-    $stmt = $db->prepare("SELECT url FROM reseau_social WHERE membre = ?");
-    $stmt->execute([2]);
+    $stmt = $db->prepare("SELECT * FROM reseau_social WHERE membre = ?");
+    $stmt->execute([$personne['id']]);
 
     $reseaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -69,15 +69,10 @@
                     </a>
                     <?php foreach ($reseaux as $reseau): ?>
                     <a href="<?= $reseau['url']?>" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-linkedin"></span>
-                        Mon LinkedIn
+                        <span class="icon-<?= $reseau['icone'] ?>"></span>
+                        <?= $reseau['nom']?>
                     </a>
                     <?php endforeach; ?>
-
-                    <a href="https://github.com/Stims-cmd" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-github"></span>
-                        Mon GitHub
-                    </a>
                 </div>
             
         </div>
