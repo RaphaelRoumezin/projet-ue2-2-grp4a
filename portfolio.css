@@ -147,6 +147,14 @@ body {
   animation-delay: 200ms;
 }
 
+.buttons-colonne {
+  display: flex;
+  flex-direction: column; /* colonne */
+  gap: 15px; /* espace entre les boutons */
+  align-items: flex-start; /* important */
+  width: auto;
+}
+
 @keyframes fadeIn {
 	0% {
     transform: translateY(-20px);
