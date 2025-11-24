@@ -33,7 +33,7 @@
         <div class="cards">
             <?php foreach ($membres as $membre): ?>
                 <a href="portfolio.php?name=<?= htmlspecialchars($membre['name']) ?>" class="lien-invisible">
-                    <div class="card">
+                    <div class="card card-personne">
                         <img src="<?= htmlspecialchars($membre['photo']) ?>" class="card-img-top"
                             alt="Photo de <?= htmlspecialchars($membre['fullname']) ?>">
                         <div class="card-body">
@@ -47,7 +47,23 @@
                 </a>
             <?php endforeach; ?>
         </div>
+        
+        <div class="card card-longue">
+        <link rel="stylesheet" href="index.css">
+            <h5 class="card-header">Qui sommes nous ?</h5>
+            <div class="card-body">
+                <h5 class="card-title">Notre projet </h5>
+                <p class="card-text">Nous sommes trois étudiants en première année de Bachelor Cybersécurité au sein de la 
+                    <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras">Guardia Cybersecurity School</span>, sur le campus de Lyon. Animés par un intérêt commun pour le domaine de la sécurité informatique et par la volonté de développer nos compétences techniques, nous avons entrepris la réalisation de ce portfolio dans le cadre de notre projet DevSecOps. <br> <br>
+                Ce travail a pour objectif de présenter de manière claire et structurée l’ensemble des connaissances et des compétences que nous avons acquises depuis le début de notre formation. Vous y trouverez, entre autres, une description de nos parcours individuels, les technologies que nous maîtrisons, ainsi que les projets que nous avons développés au cours de ce semestre. <br> <br>
+                Au-delà de l'aspect technique, ce portfolio reflète également notre démarche d’apprentissage : approche collaborative, mise en pratique des notions vues en cours, adoption de bonnes pratiques DevSecOps, gestion de version, automatisation et documentation rigoureuse. Il met en lumière non seulement nos réalisations, mais aussi notre capacité à travailler en équipe et à mener à bien un projet complet, de la conception à la mise en production. <br> <br>
+                En partageant ce portfolio, nous souhaitons démontrer notre motivation, notre engagement et notre progression dans le domaine de la cybersécurité, tout en offrant une vision transparente de notre travail et de notre évolution au sein de la
+                <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras"> Guardia Cybersecurity School.</span></p>
+                <a href="https://guardia.school/" class="btn btn-primary">Qu'est ce que Guardia Cybersecurity School ?</a>
+            </div>
+        </div>
     </main>
+
 
     <footer>
         &copy; <?= date("Y") ?> Nos portfolios. Tous droits réservés.

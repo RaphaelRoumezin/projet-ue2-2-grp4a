@@ -27,14 +27,29 @@ footer {
 }
 
 /* Mise en place des ombres quand on passe la souris sur les cartes*/
-.card {
+.card-personne {
     max-width: 350px;
     box-shadow: 0 0 20px #888;
     transition: all 0.3s ease;
     border-width: 0px;
 }
+
+.card-longue {
+  width: 1155px;
+  margin-left: 1.5%;
+}
+
+.images-text {
+    width:20px;
+    margin-top: -0.3%;
+}
+
+.cyan-gras {
+  font-weight: bold;
+  color: #006F8A;  
+}
 /* Mise en place de l'animation quand on passe la souris sur les cartes*/
-.card:hover {
+.card-personne:hover {
     transform: scale(1.02) translateY(-10px);
     box-shadow: 0 0 50px #444;
 }
