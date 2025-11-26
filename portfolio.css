@@ -79,6 +79,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
@@ -92,6 +93,7 @@ body {
 
 .project-image {
   width: 750px;
+  min-width: 0; /* Pour éviter que l'image déborde */
   height: auto;
   border-radius: 8px;
   object-fit: cover;
