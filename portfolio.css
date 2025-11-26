@@ -172,6 +172,88 @@ body {
     transform: translateX(5px);
 }
 
+/* =================== MOBILE ONLY =================== */
+@media (max-width: 768px) {
+
+  /* Section HERO */
+  .hero {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .hero img {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .text-block {
+    max-width: 90%;
+  }
+
+  .buttons-colonne {
+    align-items: center;
+    width: 100%;
+  }
+
+  .buttons-colonne a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* NAVBAR */
+  .cool-navbar {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    height: auto;
+  }
+
+  .cool-navbar a {
+    font-size: 1rem;
+  }
+
+  .navbar-spacer {
+    height: 120px;
+  }
+
+  /* PROJETS */
+  .project-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .project-info {
+    width: 100%;
+  }
+
+  .project-card {
+    margin: 20px 10px;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+  }
+
+  /* COMPÉTENCES */
+  .skill {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  /* EXPERIENCES */
+  .card-group {
+    flex-direction: column;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+}
 
 
 
