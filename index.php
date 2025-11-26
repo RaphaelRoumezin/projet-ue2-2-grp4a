@@ -66,6 +66,8 @@
 
 
     <footer>
+        <a href="dashboard/">Dashboard</a>
+        -
         &copy; <?= date("Y") ?> Nos portfolios. Tous droits réservés.
     </footer>
 </body>
