@@ -96,9 +96,9 @@
             $originalName = basename($_FILES['image']['name']);
             $extension = pathinfo($originalName, PATHINFO_EXTENSION);
             $newName = uniqid('exp_') . '.' . $extension;
-            $imagePath = $uploadDir . $newName;
+            $imagePath = "uploads/" . $newName;
 
-            if (!move_uploaded_file($tmpName, $imagePath)) {
+            if (!move_uploaded_file($tmpName, $uploadDir . $newName)) {
                 $valide = false;
                 $statuts[] = ["danger", "Erreur lors du téléchargement de l'image."];
             }
@@ -247,7 +247,7 @@
                     <td>" . htmlspecialchars($poste) . "</td>
                     <td>" . htmlspecialchars($entreprise) . "</td>
                     <td>" . htmlspecialchars($duree) . "</td>
-                    <td><img src='" . htmlspecialchars($image) . "' alt='" . htmlspecialchars($poste) . "' style='max-width: 100px;'></td>
+                    <td><img src='../" . htmlspecialchars($image) . "' alt='" . htmlspecialchars($poste) . "' style='max-width: 100px;'></td>
                     <td>" . htmlspecialchars($description) . "</td>
                     <td class='actions'>
                         <a href='?edit_experience=" . urlencode($id) . "' class='btn btn-secondary'>Modifier</a>

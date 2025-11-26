@@ -23,7 +23,7 @@
 
             $experience = $query->fetch(PDO::FETCH_ASSOC);
             if ($experience && !empty($experience['image'])) {
-                $imagePath = $experience['image'];
+                $imagePath = '../' . $experience['image'];
                 if (file_exists($imagePath)) {
                     unlink($imagePath); // Supprimer le fichier image
                 }

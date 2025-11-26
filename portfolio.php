@@ -22,10 +22,20 @@
         exit();
     }
 
-    $stmt = $db->prepare("SELECT * FROM reseau_social WHERE membre = ?");
-    $stmt->execute([$personne['id']]);
+    // Récupérer les réseaux sociaux associés à la personnes
+    $query = $db->prepare("SELECT * FROM reseau_social WHERE membre = ?");
+    $query->execute([$personne['id']]);
+    $reseaux = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    $reseaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Récupérer les expériences associées à la personne
+    $query = $db->prepare("SELECT * FROM experience WHERE membre = ?");
+    $query->execute([$personne['id']]);
+    $experiences = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    // Récupérer les compétences associées à la personne
+    $query = $db->prepare("SELECT * FROM competence WHERE membre = ?");
+    $query->execute([$personne['id']]);
+    $competences = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -164,30 +174,16 @@
         <h2>Mes expériences</h2>
         <p>Expériences professionnelles et personnelles</p>
         <div class="card-group">
-            <div class="card">
-                <img src="images/extincteur30cm.jpg" class="card-img-top" alt="extincteur30cm">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"><small class="text-body-secondary">sous titre</small></p>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <?php foreach ($experiences as $experience): ?>
+                <div class="card card-experience">
+                    <img src="<?= $experience['image'] ?>" class="card-img-top" alt="<?= $experience['poste'] ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $experience['poste'] ?></h5>
+                        <p class="card-text"><small class="text-body-secondary"><?= $experience['entreprise'] ?> - <?= $experience['duree'] ?></small></p>
+                        <p class="card-text"><?= $experience['description'] ?></p>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <img src="images/shrek.jpg" class="card-img-top" alt="shrek">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"><small class="text-body-secondary">sous titre</small></p>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="images/ane.jpg" class="card-img-top" alt="ane">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"><small class="text-body-secondary">sous titre</small></p>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
