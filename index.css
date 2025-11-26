@@ -12,6 +12,7 @@ body, html {
 main {
     margin-top: 60px;
     flex: 1;
+    padding: 0 10px;
 }
 
 footer {
@@ -32,12 +33,14 @@ footer {
     max-width: 350px;
     box-shadow: 0 0 20px #888;
     transition: all 0.3s ease;
+    transition-property: transform, box-shadow;
     border-width: 0px;
 }
 
 .card-longue {
-    width: 1155px;
-    margin-left: 1.5%;
+    width: 100%;
+    max-width: 1500px;
+    margin: auto; /* Centre horizontalement */
     margin-top: 50px;
 }
 
@@ -82,10 +85,6 @@ footer {
         align-items: stretch; /* évite le centrage qui écrase la largeur sur mobile */
     }
 
-    main {
-        padding: 0 10px;
-    }
-
     /* Titre principal */
     .titre { 
         font-size: 36px;
@@ -102,15 +101,6 @@ footer {
     /* Cartes individuelles */
     .card-personne {
         width: 100%;
-        max-width: 95%;
-    }
-
-    /* Carte longue Guardia */
-    .card-longue {
-        width: 100%;
-        max-width: 100%;
-        margin-left: 0;
-        margin-top: 20px;
     }
 
     /* Désactivation du hover sur mobile */
