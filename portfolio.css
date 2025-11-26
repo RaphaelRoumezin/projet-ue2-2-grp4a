@@ -183,6 +183,10 @@ body {
   max-width: 600px;
 }
 
+.card-experience img {
+  height: 400px;
+}
+
 /* =================== Pour téléphone =================== */
 @media (max-width: 768px) {
 
