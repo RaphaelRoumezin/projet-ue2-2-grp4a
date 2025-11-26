@@ -172,7 +172,7 @@
     <!-- Section Mes expériences -->
     <section id="experiences" class="section">
         <h2>Mes expériences</h2>
-        <p>Expériences professionnelles et personnelles</p>
+
         <div class="card-group">
             <?php foreach ($experiences as $experience): ?>
                 <div class="card card-experience">
@@ -192,31 +192,12 @@
     
     <section id="competences" class="section">
         <h2>Mes compétences</h2>
-        <p>Voici la liste de mes compétences acquises au cours de ma vie</p>
-    <div class="skills-container">
-    <div class="skill"> HTML</div>
-    <div class="skill"> CSS</div>
-    <div class="skill"> Réseau</div>
-    <div class="skill"> PHP</div>
-    <div class="skill"> MySQL</div>
-    <div class="skill"> Croissantage</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
-    <div class="skill"> Git</div>
 
-    
-    </div>
+        <div class="skills-container">
+            <?php foreach ($competences as $competence): ?>
+                <div class="skill"> <?= htmlspecialchars($competence['nom']) ?></div>
+            <?php endforeach; ?>
+        </div>
     </section>
 
     <script>
