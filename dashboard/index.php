@@ -24,6 +24,7 @@
         exit();
     }
 
+    // Récéption du formulaire d'ajout de compétence
     if (isset($_POST['ajout_competence'])) {
         $nom = $_POST['nom'] ?? '';
 
@@ -45,6 +46,105 @@
     $query = $db->prepare("SELECT * FROM competence WHERE membre = :id");
     $query->execute(['id' => $_SESSION['user_id']]);
     $competences = $query->fetchAll();
+
+    // Récéption du formulaire d'ajout/modification d'expérience
+    if (isset($_POST['experience_id'])) {
+        $valide = true;
+
+        $experience_id = $_POST['experience_id'] ?? '';
+        if ($experience_id != '' && is_numeric($experience_id)) {
+            $experience_id = intval($experience_id);
+        } else {
+            // Erreur fatale, car hors de controle de l'utilisateur
+            die("ID d'expérience invalide.");
+        }
+
+        $poste = $_POST['poste'] ?? '';
+        if ($poste == '') {
+            $valide = false;
+            $statuts[] = ["danger", "L'intitulé de poste est obligatoire."];
+        }
+
+        $entreprise = $_POST['entreprise'] ?? '';
+        if ($entreprise == '') {
+            $valide = false;
+            $statuts[] = ["danger", "L'entreprise est obligatoire."];
+        }
+
+        $duree = $_POST['duree'] ?? '';
+        if ($duree == '') {
+            $valide = false;
+            $statuts[] = ["danger", "La durée est obligatoire."];
+        }
+
+        $description = $_POST['description'] ?? '';
+        if ($description == '') {
+            $valide = false;
+            $statuts[] = ["danger", "La description est obligatoire."];
+        }
+
+        // Récupération de l'image
+        $imagePath = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            // Upload du fichier
+            $uploadDir = '../uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            $tmpName = $_FILES['image']['tmp_name'];
+            $originalName = basename($_FILES['image']['name']);
+            $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+            $newName = uniqid('exp_') . '.' . $extension;
+            $imagePath = $uploadDir . $newName;
+
+            if (!move_uploaded_file($tmpName, $imagePath)) {
+                $valide = false;
+                $statuts[] = ["danger", "Erreur lors du téléchargement de l'image."];
+            }
+        }
+
+        if ($valide) {
+            if ($experience_id === -1) {
+                // Insertion
+                $query = $db->prepare("INSERT INTO experience (membre, poste, entreprise, duree, image, description) VALUES (:membre, :poste, :entreprise, :duree, :image, :description)");
+                $query->execute([
+                    'membre' => $_SESSION['user_id'],
+                    'poste' => $poste,
+                    'entreprise' => $entreprise,
+                    'duree' => $duree,
+                    'image' => $imagePath,
+                    'description' => $description
+                ]);
+
+                $statuts[] = ["success", "Expérience ajoutée avec succès."];
+            } else {
+                // Mise à jour
+                $query = $db->prepare("UPDATE experience SET poste = :poste, entreprise = :entreprise, duree = :duree, description = :description" . (($imagePath != '') ? ", image = :image" : "") . " WHERE id = :id AND membre = :membre");
+                $params = [
+                    'poste' => $poste,
+                    'entreprise' => $entreprise,
+                    'duree' => $duree,
+                    'description' => $description,
+                    'id' => $experience_id,
+                    'membre' => $_SESSION['user_id']
+                ];
+                if ($imagePath != '') {
+                    $params['image'] = $imagePath;
+                }
+                $query->execute($params);
+
+                $statuts[] = ["success", "Expérience mise à jour avec succès."];
+
+                // 
+            }
+        }
+    }
+
+    // Récupération des expériences
+    $query = $db->prepare("SELECT * FROM experience WHERE membre = :id");
+    $query->execute(['id' => $_SESSION['user_id']]);
+    $experiences = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +181,21 @@
         a.lien-suppression:hover {
             text-decoration: line-through;
         }
+
+        table.experiences {
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        table.experiences th, table.experiences td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table.experiences tr.editable td, table.experiences .actions {
+            padding: 1px;
+        }
     </style>
 
     <title>Dashboard</title>
@@ -116,13 +231,85 @@
         <?php endif; ?>
 
         <form method="post">
-            <div class="input-group zone-ajout-competence">
+            <input type="hidden" name="ajout_competence" value="1">
 
-                <input type="hidden" name="ajout_competence" value="1">
+            <div class="input-group zone-ajout-competence">
                 <input name="nom" type="text" class="form-control" placeholder="Cybersécurité" required>
                 <input class="btn btn-outline-primary" type="submit" value="Ajouter une compétence">
             </div>
         </form>
+
+        <h2>Mes expériences</h2>
+
+        <?php 
+            function ligneExperience($id, $poste, $entreprise, $duree, $image, $description) {
+                return "<tr>
+                    <td>" . htmlspecialchars($poste) . "</td>
+                    <td>" . htmlspecialchars($entreprise) . "</td>
+                    <td>" . htmlspecialchars($duree) . "</td>
+                    <td><img src='" . htmlspecialchars($image) . "' alt='" . htmlspecialchars($poste) . "' style='max-width: 100px;'></td>
+                    <td>" . htmlspecialchars($description) . "</td>
+                    <td class='actions'>
+                        <a href='?edit_experience=" . urlencode($id) . "' class='btn btn-secondary'>Modifier</a>
+                        <a href='suppression.php?type=experience&id=" . urlencode($id) . "' class='btn btn-danger'>Supprimer</a>
+                    </td>
+                </tr>";
+            }
+
+            function ligneExperienceEditable($id, $poste, $entreprise, $duree, $description) {
+                // action='.' permet de sortir du mode édition après soumission (en enlevant le paramètre GET)
+                return "<tr class='editable'><form method='post' action='.' enctype='multipart/form-data'>
+                    <input type='hidden' name='experience_id' value='$id'>
+                    <td><input type='text' class='form-control' name='poste' value='" . htmlspecialchars($poste) . "'></td>
+                    <td><input type='text' class='form-control' name='entreprise' value='" . htmlspecialchars($entreprise) . "'></td>
+                    <td><input type='text' class='form-control' name='duree' value='" . htmlspecialchars($duree) . "'></td>
+                    <td><input type='file' class='form-control' name='image'></td>
+                    <td><input type='text' class='form-control' name='description' value='" . htmlspecialchars($description) . "'></td>
+                    <td class='actions'><input type='submit' class='btn btn-primary' value='Enregistrer'></td>
+                    </form></tr>";
+            }
+        ?>
+
+        <table class="experiences">
+            <thead>
+                <tr>
+                    <th>Poste occupé</th>
+                    <th>Entreprise</th>
+                    <th>Durée</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php
+                    $edit_experience = $_GET['edit_experience'] ?? -1;
+                    if (is_numeric($edit_experience)) {
+                        $edit_experience = intval($edit_experience);
+                    } else {
+                        $edit_experience = -1;
+                    }
+
+                    foreach ($experiences as $experience) {
+                        if ($experience['id'] === $edit_experience) {
+                            // Ligne éditable
+                            echo ligneExperienceEditable($experience['id'], $experience['poste'], $experience['entreprise'], $experience['duree'], $experience['description']);
+                        } else {
+                            // Ligne normale
+                            echo ligneExperience($experience['id'], $experience['poste'], $experience['entreprise'], $experience['duree'], $experience['image'], $experience['description']);
+                        }
+                    } 
+                ?>
+
+                <!-- Ligne d'ajout d'expérience (si pas de ligne en modification) -->
+                <?php 
+                    if ($edit_experience === -1) {
+                        echo ligneExperienceEditable(-1, '', '', '', '');
+                    }
+                ?>
+            </tbody>
+        </table>
     </main>
     <!-- footer en bas de la page grace a notre liaison a index.css -->
     <footer>
