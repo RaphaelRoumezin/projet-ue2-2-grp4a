@@ -231,10 +231,15 @@
         // Mettre la section accueil comme la plus haute
         offsets["accueil"] = -1;
 
+        // Mettre la dernière section comme la plus basse   
+        offsets["competences"] = document.body.scrollHeight - window.innerHeight - 1;
+
         function onScroll() {
             const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
             let newSection = currentSection;
+            
+            // Pour tous les offset, trouver le plus grand offset inférieur à la position du scroll
             for (const [id, offset] of Object.entries(offsets)) {
                 if (scrollPosition >= offset) {
                     newSection = id;
@@ -264,7 +269,7 @@
                     observer.unobserve(entry.target); // Arrêter d'observer une fois l'animation jouée
                 }
             });
-        }, { threshold: 0.5 }); // Déclencher quand 10% de l'élément est visible
+        }, { threshold: 0.5 }); // Déclencher quand 50% de l'élément est visible
 
         pausedAnimations.forEach(el => {
             observer.observe(el);
