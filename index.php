@@ -47,7 +47,7 @@
                 </a>
             <?php endforeach; ?>
         </div>
-        
+        <!-- "carte" pour notre présentation et Guardia -->
         <div class="card card-longue">
         <link rel="stylesheet" href="index.css">
             <h5 class="card-header">Qui sommes nous ?</h5>
@@ -64,7 +64,7 @@
         </div>
     </main>
 
-
+    <!-- Le lien du dashboard et le copyright en bas de la page -->
     <footer>
         <a href="dashboard/">Dashboard</a>
         -
