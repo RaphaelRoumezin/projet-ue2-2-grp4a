@@ -4,11 +4,11 @@
     $statuts = [];
 
     // Reception de formulaire
-    if (isset($_GET['pass'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $valide = true;
 
         // Vérification des données reçues
-        $pass = $_GET['pass'] ?? '';
+        $pass = $_POST['pass'] ?? '';
         if ($pass == '') {
             $valide = false;
             $statuts[] = ["warning", "Le mot de passe est obligatoire."];
@@ -61,7 +61,7 @@
         <h1 class="titre">Have You Been Pwned ?</h1>
     </header>
     <main class="section-etroite">
-        <form method="get">
+        <form method="post">
             <div class="zone-statuts">
                 <?php foreach ($statuts as [$type, $contenu]) : ?>
                     <div class="alert alert-<?= $type ?>" role="alert">
