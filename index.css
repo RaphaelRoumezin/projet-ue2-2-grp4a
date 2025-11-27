@@ -50,9 +50,15 @@ footer {
 }
 
 .cyan-gras {
-  font-weight: bold;
-  color: #006F8A;  
+    font-weight: bold;
+    color: #006F8A;  
 }
+
+.orange-gras {
+    font-weight: bold;
+    color: #5B006D;  
+}
+
 /* Mise en place de l'animation quand on passe la souris sur les cartes*/
 .card-personne:hover {
     transform: scale(1.02) translateY(-10px);
