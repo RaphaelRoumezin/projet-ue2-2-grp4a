@@ -59,7 +59,9 @@
                 Au-delà de l'aspect technique, ce portfolio reflète également notre démarche d’apprentissage : approche collaborative, mise en pratique des notions vues en cours, adoption de bonnes pratiques DevSecOps, gestion de version, automatisation et documentation rigoureuse. Il met en lumière non seulement nos réalisations, mais aussi notre capacité à travailler en équipe et à mener à bien un projet complet, de la conception à la mise en production. <br> <br>
                 En partageant ce portfolio, nous souhaitons démontrer notre motivation, notre engagement et notre progression dans le domaine de la cybersécurité, tout en offrant une vision transparente de notre travail et de notre évolution au sein de la
                 <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras"> Guardia Cybersecurity School.</span></p>
+
                 <a href="https://guardia.school/" class="btn btn-primary">Site de Guardia Cybersecurity School</a>
+                <a href="ihbp.php" class="btn btn-secondary">Have you been pwned ?</a>
             </div>
         </div>
     </main>
