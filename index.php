@@ -60,6 +60,7 @@
                 En partageant ce portfolio, nous souhaitons démontrer notre motivation, notre engagement et notre progression dans le domaine de la cybersécurité, tout en offrant une vision transparente de notre travail et de notre évolution au sein de la
                 <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras"> Guardia Cybersecurity School.</span> <br> <br> Si vous souhaitez vérfier votre adresse mail pour savoir si elle a été compromise, cliquez sur le bouton <img class="images-text" src="images/pwndlogo.png" alt="pwndlogo"> <span class="orange-gras"> Have you been pwned </span></p>
                 <a href="https://guardia.school/" class="btn btn-primary">Site de Guardia Cybersecurity School </a>
+                <a href="ihbp.php" class="btn btn-secondary">Have you been pwned ?</a>
             </div>
         </div>
     </main>
