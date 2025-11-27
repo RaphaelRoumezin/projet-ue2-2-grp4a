@@ -1,9 +1,13 @@
 /* =================== Pour ordinateur =================== */
 
+/* Rendre de scrool plus doux */
 body {
   scroll-behavior: smooth;
 }
 
+/* ----- SECTION ACCUEIL ----- */
+
+/* Alignement photo et texte */
 .hero {
   display: flex;
   align-items: center;
@@ -11,10 +15,30 @@ body {
   gap: 50px;
 }
 
-.hero .text-block {
+/* Limite la largeur du texte */
+.text-block {
   max-width: 600px;
 }
 
+/* Déinit la taille de l'image */
+.hero img {
+  width: 500px;
+  border-radius: 5%;
+  margin-bottom: 20px;
+}
+
+/* Boutons réseaux */
+.buttons-colonne {
+  display: flex;
+  flex-direction: column; 
+  gap: 15px; 
+  align-items: flex-start; 
+  width: auto;
+}
+
+/* ----- NAVBAR ----- */
+
+/* Defini la navbar */
 .cool-navbar {
   position: fixed;
   top: 0;
@@ -31,11 +55,13 @@ body {
   margin: revert;
 }
 
+/* Laisse de l'espace sous la barre */
 .navbar-spacer {
   height: 80px;
   display: block;
 }
 
+/* Liens dans la navbar */
 .cool-navbar a {
   text-decoration: none;
   color: #333;
@@ -43,38 +69,30 @@ body {
   font-size: 1.5rem;
 }
 
+/* Partie liée à Js */ 
 .cool-navbar a.active {
   text-decoration: underline #3498db;
 }
 
+/* Défini les sections */
 .section {
   padding: 100px 20px;
   min-height: 60vh;
 }
 
-.hero img {
-  width: 500px;
-  border-radius: 5%;
-  margin-bottom: 20px;
-}
+/* ----- SECTION PROJETS ----- */
 
-.grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
+/* Créer les cartes de projets */
 .project-card {
   background: #fde2e4;
   padding: 20px;
   border-radius: 12px;
-  margin-bottom: 40px;
   margin: 40px auto;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   max-width: 1700px;
 }
 
-/* Partie du haut : image + texte à droite */
+/* Place l'image + titre */
 .project-top {
   display: flex;
   align-items: center;
@@ -83,39 +101,46 @@ body {
   gap: 30px;
 }
 
+/* Place l'icône en haut à droite */
 .project-top .icon {
   align-self: start;
 }
 
+/* Place le sous titre, sous le titre */
 .project-info {
   flex: 1;
 }
 
+/* Défini l'image du project */
 .project-image {
   width: 750px;
-  min-width: 0; /* Pour éviter que l'image déborde */
+  min-width: 0; 
   height: auto;
   border-radius: 8px;
   object-fit: cover;
 }
 
+/* Stylise le titre */
 .project-info h3 {
   margin: 0px;
   font-size: 1.5rem;
 }
 
+/* Stylise le sous titre */
 .project-tags {
   color: #777;
   font-size: 0.9rem;
   margin-top: 5px;
 }
 
-/* Description en dessous */
+/* Grosse description du projet sous l'image */
 .project-description {
   margin-top: 40px;
   font-size: 1rem;
   line-height: 1.6;
 }
+
+/* ----- ANIMATIONS ----- */
 
 /* Animation pour l'apparition des choses */
 .fade-in {
@@ -127,23 +152,18 @@ body {
   animation-fill-mode: forwards;
 }
 
+/* Attend que cela apparaisse à l'écran */
 .fade-in.paused {
   animation-play-state: paused;
 }
 
+/* Fluidifie l'animation */
 .fade-in.delayed {
   opacity: 0;
   animation-delay: 200ms;
 }
 
-.buttons-colonne {
-  display: flex;
-  flex-direction: column; 
-  gap: 15px; 
-  align-items: flex-start; 
-  width: auto;
-}
-
+/*Défini les actions de l'animation*/
 @keyframes fadeIn {
 	0% {
     transform: translateY(-20px);
@@ -155,6 +175,16 @@ body {
 	}
 }
 
+/* ----- SECTION EXPERIENCES ----- */
+
+/*Défini la taille des images des experiences*/
+.card-experience img {
+  height: 400px;
+}
+
+/* ----- SECTION COMPETENCES ----- */
+
+/* Défini la case */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -162,6 +192,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+/* Défini la compétence */
 .skill {
   flex: 1 1 calc(20% - 10px);
   background: #f4f4f4;
@@ -171,52 +202,43 @@ body {
   transition: transform 0.25s ease;
 }
 
+/* Animation compétence */
 .skill:hover {
   transform: translateX(5px);
-}
-
-.card-group:has(.card-experience) {
-  justify-content: center ;
-}
-
-.card-experience {
-  max-width: 600px;
-}
-
-.card-experience img {
-  height: 400px;
 }
 
 /* =================== Pour téléphone =================== */
 @media (max-width: 768px) {
 
-  /* Section HERO */
+  /* ----- SECTION ACCUEIL ----- */
+
+  /* Alignement photo et texte */
   .hero {
     flex-direction: column;
     gap: 20px;
     text-align: center;
   }
 
+  /* Déinit la taille de l'image */
   .hero img {
     width: 90%;
     max-width: 300px;
   }
 
+  /* Limite la largeur du texte */
   .text-block {
     max-width: 90%;
   }
 
+  /* Boutons réseaux */
   .buttons-colonne {
     align-items: center;
     width: 100%;
   }
 
-  .buttons-colonne a {
-    width: 100%;
-    text-align: center;
-  }
+  /* ----- SECTION NAVBAR ----- */
 
-  /* NAVBAR */
+  /*Défini la navbar*/
   .cool-navbar {
     flex-wrap: wrap;
     gap: 15px;
@@ -224,50 +246,48 @@ body {
     height: auto;
   }
 
-  .cool-navbar a {
-    font-size: 1rem;
-  }
-
+  /*Espace sous la navbar*/
   .navbar-spacer {
     height: 120px;
   }
 
-  /* PROJETS */
+  /* ----- SECTION PROJETS ----- */
+
+  /* Créer les cartes de projets */
+  .project-card {
+    margin: 20px 10px;
+  }
+
+  /* Place l'image + titre */
   .project-top {
     flex-direction: column;
     align-items: flex-start;
   }
 
+  /* Défini l'image du project */
   .project-image {
     width: 100%;
     max-width: 100%;
   }
 
+  /* Place le sous titre, sous le titre */
   .project-info {
     width: 100%;
   }
 
-  .project-card {
-    margin: 20px 10px;
-  }
-
+  /* Grosse description du projet sous l'image */
   .project-description {
     font-size: 0.95rem;
   }
 
-  /* COMPÉTENCES */
+  /* ----- SECTION COMPETENCES ----- */
+
+  /* Défini la compétence */
   .skill {
     flex: 1 1 calc(50% - 10px);
   }
 
-  /* EXPERIENCES */
-  .card-group {
-    flex-direction: column;
-  }
-
-  .card {
-    margin-bottom: 15px;
-  }
+  /* ----- SECTION EXPERIENCES ----- */
 }
 
 
