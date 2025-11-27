@@ -145,6 +145,11 @@
     $query = $db->prepare("SELECT * FROM experience WHERE membre = :id");
     $query->execute(['id' => $_SESSION['user_id']]);
     $experiences = $query->fetchAll();
+
+    // Récupération des messages reçus
+    $query = $db->prepare("SELECT * FROM message WHERE destinataire = :id ORDER BY id DESC");
+    $query->execute(['id' => $_SESSION['user_id']]);
+    $messages = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -218,6 +223,7 @@
         </div>
 
         <h2>Mes compétences</h2>
+
         <?php if (count($competences) === 0) : ?>
             <p>Vous n'avez pas encore ajouté de compétence.</p>
         <?php else : ?>
@@ -310,6 +316,42 @@
                 ?>
             </tbody>
         </table>
+
+        <h2>Messages recus</h2>
+
+        <?php if (count($messages) === 0) : ?>
+            <p>Vous n'avez pas encore reçu de message.</p>
+        <?php else : ?>
+            <?php foreach ($messages as $message) : ?>
+                <h3><?= htmlspecialchars($message['sujet']) ?></h3>
+                <p>
+                    De <?= htmlspecialchars($message['nom']) ?> <?= htmlspecialchars($message['prenom']) ?>
+                    / Genre: <?php 
+                        switch ($message['genre']) {
+                            case 'm':
+                                echo "Homme";
+                                break;
+                            case 'f':
+                                echo "Femme";
+                                break;
+                            case 'c':
+                                echo "Croissant";
+                                break;
+                            case 'a':
+                                echo "Autre";
+                                break;
+                            default:
+                                echo "Non précisé";
+                                break;
+                        }
+                    ?>
+                    / Tel: +33 <?= htmlspecialchars($message['tel']) ?>
+                    / Email: <?= htmlspecialchars($message['email']) ?>
+                </p>
+                <p><?= nl2br(htmlspecialchars($message['content'])) ?></p>
+
+            <?php endforeach; ?>
+        <?php endif; ?>
     </main>
     <!-- footer en bas de la page grace a notre liaison a index.css -->
     <footer>
