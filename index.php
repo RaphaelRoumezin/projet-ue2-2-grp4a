@@ -58,8 +58,8 @@
                 Ce travail a pour objectif de présenter de manière claire et structurée l’ensemble des connaissances et des compétences que nous avons acquises depuis le début de notre formation. Vous y trouverez, entre autres, une description de nos parcours individuels, les technologies que nous maîtrisons, ainsi que les projets que nous avons développés au cours de ce semestre. <br> <br>
                 Au-delà de l'aspect technique, ce portfolio reflète également notre démarche d’apprentissage : approche collaborative, mise en pratique des notions vues en cours, adoption de bonnes pratiques DevSecOps, gestion de version, automatisation et documentation rigoureuse. Il met en lumière non seulement nos réalisations, mais aussi notre capacité à travailler en équipe et à mener à bien un projet complet, de la conception à la mise en production. <br> <br>
                 En partageant ce portfolio, nous souhaitons démontrer notre motivation, notre engagement et notre progression dans le domaine de la cybersécurité, tout en offrant une vision transparente de notre travail et de notre évolution au sein de la
-                <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras"> Guardia Cybersecurity School.</span></p>
-                <a href="https://guardia.school/" class="btn btn-primary">Site de Guardia Cybersecurity School</a>
+                <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras"> Guardia Cybersecurity School.</span> <br> <br> Si vous souhaitez vérfier votre adresse mail pour savoir si elle a été compromise, cliquez sur le bouton <img class="images-text" src="images/pwndlogo.png" alt="pwndlogo"> <span class="orange-gras"> Have you been pwned </span></p>
+                <a href="https://guardia.school/" class="btn btn-primary">Site de Guardia Cybersecurity School </a>
             </div>
         </div>
     </main>
