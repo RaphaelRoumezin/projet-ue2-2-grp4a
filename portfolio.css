@@ -138,9 +138,9 @@ body {
 
 .buttons-colonne {
   display: flex;
-  flex-direction: column; /* colonne */
-  gap: 15px; /* espace entre les boutons */
-  align-items: flex-start; /* important */
+  flex-direction: column; 
+  gap: 15px; 
+  align-items: flex-start; 
   width: auto;
 }
 
