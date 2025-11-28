@@ -232,7 +232,7 @@
         offsets["accueil"] = -1;
 
         // Mettre la dernière section comme la plus basse   
-        offsets["competences"] = document.body.scrollHeight - window.innerHeight - 1;
+        offsets["competences"] = document.body.scrollHeight - window.innerHeight - 10;
 
         function onScroll() {
             const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
