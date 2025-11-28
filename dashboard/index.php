@@ -323,32 +323,43 @@
             <p>Vous n'avez pas encore reçu de message.</p>
         <?php else : ?>
             <?php foreach ($messages as $message) : ?>
-                <h3><?= htmlspecialchars($message['sujet']) ?></h3>
-                <p>
-                    De <?= htmlspecialchars($message['nom']) ?> <?= htmlspecialchars($message['prenom']) ?>
-                    / Genre: <?php 
-                        switch ($message['genre']) {
-                            case 'm':
-                                echo "Homme";
-                                break;
-                            case 'f':
-                                echo "Femme";
-                                break;
-                            case 'c':
-                                echo "Croissant";
-                                break;
-                            case 'a':
-                                echo "Autre";
-                                break;
-                            default:
-                                echo "Non précisé";
-                                break;
-                        }
-                    ?>
-                    / Tel: +33 <?= htmlspecialchars($message['tel']) ?>
-                    / Email: <?= htmlspecialchars($message['email']) ?>
-                </p>
-                <p><?= nl2br(htmlspecialchars($message['content'])) ?></p>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0"><?= htmlspecialchars($message['nom']) ?> <?= htmlspecialchars($message['prenom']) ?> - <?= htmlspecialchars($message['sujet']) ?></h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <small class="text-body-secondary">
+                                Genre:
+                                <?php
+                                    switch ($message['genre']) {
+                                        case 'm':
+                                            echo "Homme";
+                                            break;
+                                        case 'f':
+                                            echo "Femme";
+                                            break;
+                                        case 'c':
+                                            echo "Croissant";
+                                            break;
+                                        case 'a':
+                                            echo "Autre";
+                                            break;
+                                        default:
+                                            echo "Non précisé";
+                                            break;
+                                    }
+                                ?>
+                                / Tel: +33 <?= htmlspecialchars($message['tel']) ?>
+                                / Email: <?= htmlspecialchars($message['email']) ?>
+                            </small>
+
+                            <br>
+                        
+                            <?= nl2br(htmlspecialchars($message['content'])) ?>
+                        </p>
+                    </div>
+                </div>
 
             <?php endforeach; ?>
         <?php endif; ?>
