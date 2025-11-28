@@ -52,9 +52,11 @@ function onScroll() {
 window.addEventListener("scroll", onScroll);
 onScroll();
 
+// Définir comme actif le lien cliqué systematiquement
 navLinks.forEach(el => {
     el.addEventListener("click", (e) => {
-        updateActiveLink(e.target.id.replace("link-", ""));
+        if (e.target.id.startsWith("link-"))
+            updateActiveLink(e.target.id.replace("link-", ""));
     });
 });
 

@@ -71,10 +71,14 @@
 
     <!-- Le lien du dashboard et le copyright en bas de la page -->
     <footer>
+        <a href="#" id="nuitjour"></a>
+        -
         <a href="dashboard/">Dashboard</a>
         -
         &copy; <?= date("Y") ?> Nos portfolios. Tous droits réservés.
     </footer>
+
+    <script src="js/nuitjour.js"></script>
 </body>
 
 </html>

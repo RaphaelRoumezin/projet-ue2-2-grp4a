@@ -61,7 +61,7 @@
         <a id="link-experiences" href="#experiences">Mes expériences</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
         <a href="contact.php?to=<?= $name ?>">Contact</a>
-        <a href="#" id="nuitjour">Thème sombre</a>
+        <a href="#" id="nuitjour"></a>
     </nav>
 
     <div class="navbar-spacer"></div>
