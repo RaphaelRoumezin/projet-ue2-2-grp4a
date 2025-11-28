@@ -177,7 +177,17 @@ body {
 
 /* ----- SECTION EXPERIENCES ----- */
 
-/*Défini la taille des images des experiences*/
+/* Centre les cartes d'experiences */
+.card-group:has(.card-experience) {
+  justify-content: center ;
+}
+
+/*Défini la largeur des cartes des experiences*/
+.card-experience {
+  max-width: 600px;
+}
+
+/*Défini la hauteur des images des experiences*/
 .card-experience img {
   height: 400px;
 }
