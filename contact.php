@@ -199,6 +199,9 @@
     </main>
     <!-- footer en bas de la page grace a notre liaison a index.css -->
     <footer>
+        <a href="#" id="nuitjour"></a>
+        <script src="js/nuitjour.js"></script>
+        -
         &copy; <?= date("Y") ?> Nos portfolios. Tous droits réservés.
     </footer>
 </body>
