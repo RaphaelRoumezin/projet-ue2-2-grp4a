@@ -56,6 +56,7 @@
 
     <!-- Barre de navigation -->
     <nav class="cool-navbar">
+        <a href="." class="retour"><span class="icon-chevron-left"></span></a>
         <a id="link-accueil" href="#">Accueil</a>
         <a id="link-projets" href="#projets">Mes projets</a>
         <a id="link-experiences" href="#experiences">Mes expériences</a>
