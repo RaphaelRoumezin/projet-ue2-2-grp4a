@@ -87,6 +87,14 @@ footer {
 }
 
 /* =================== Pour mode sombre ================= */
+#nuitjour::after {
+  content: "Thème sombre";
+}
+
+[data-bs-theme="dark"] #nuitjour::after {
+  content: "Thème clair";
+}
+
 body[data-bs-theme="dark"] {
     background-color: #121212;
 }

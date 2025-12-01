@@ -1,7 +1,0 @@
-#nuitjour::after {
-  content: "Thème sombre";
-}
-
-[data-bs-theme="dark"] #nuitjour::after {
-  content: "Thème clair";
-}

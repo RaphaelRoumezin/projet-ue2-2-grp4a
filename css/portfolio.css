@@ -220,6 +220,14 @@ body {
 }
 
 /* =================== Pour mode sombre ================= */
+#nuitjour::after {
+  content: "🌙";
+}
+
+[data-bs-theme="dark"] #nuitjour::after {
+  content: "☀️";
+}
+
 [data-bs-theme="dark"] .cool-navbar {
   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
