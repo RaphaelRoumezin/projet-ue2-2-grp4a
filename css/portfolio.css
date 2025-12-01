@@ -1,3 +1,5 @@
+@import "nuitjour.css";
+
 /* =================== Pour ordinateur =================== */
 
 /* Rendre de scrool plus doux */
@@ -218,7 +220,6 @@ body {
 }
 
 /* =================== Pour mode sombre ================= */
-
 [data-bs-theme="dark"] .cool-navbar {
   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
