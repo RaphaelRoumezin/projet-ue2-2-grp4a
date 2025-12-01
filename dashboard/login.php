@@ -24,13 +24,47 @@
         }
         if ($valide == true) {
             // Récupération du hash du mot de passe
-            $query = $db->prepare("SELECT id, password FROM membre WHERE name = :name");
+            $query = $db->prepare("SELECT id, password, 2fa FROM membre WHERE name = :name");
             $query->execute(['name' => $user]);
             $userData = $query->fetch();
 
             if (!$userData || !password_verify($pass, $userData['password'])) {
                 $statuts[] = ["danger", "Nom d'utilisateur ou mot de passe incorrect."];
             } else {
+                // Mot de passe correct, connexion valide
+
+                // Vérification du 2FA
+                if (!is_null($userData['2fa'])) {
+                    $_SESSION['pending_2fa_user_id'] = $userData['id'];
+                    list($twofactortype, $twofactordata) = explode(":", $userData['2fa'], 2);
+
+                    switch ($twofactortype) {
+                        case 'discord':
+                            // Envoi du code via Discord
+                            include '../interne/discord.php';
+                            $code = rand(100000, 999999);
+
+                            $dmChannel = discord_create_dm_channel($twofactordata);
+                            discord_send_message($dmChannel['id'], "Votre code de connexion est : **{$code}**");
+
+                            $_SESSION['pending_2fa_code'] = "static:" . $code;
+                            break;
+
+                        case 'totp':
+                            // Rien à faire, le code sera généré par l'application TOTP
+                            $_SESSION['pending_2fa_code'] = "totp:" . $twofactordata;
+                            break;
+                        
+                        default:
+                            die("Méthode 2FA retournée par la base de donnée inconnue.");
+                            break;
+                    }
+
+                    header("Location: otp.php");
+                    http_response_code(302);
+                    exit();
+                }
+
                 // Connexion réussie
                 $_SESSION['user_id'] = $userData['id'];
 

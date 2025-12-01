@@ -3,6 +3,7 @@
 - name (VARCHAR(20), primary): Nom d'utilisateur du membre
 - fullname (VARCHAR(100)): Nom complet
 - password (VARCHAR(255)): Hash du mot de passe du membre
+- 2fa (VARCHAR(255), nullable): Données relative à l'authentification à 2 facteurs
 - intro (TEXT): Introduction du membre sur la page d'accueil
 - description (TEXT): Description du membre
 - photo (VARCHAR(100)): Chemin d'accès relatif vers la photo du membre
