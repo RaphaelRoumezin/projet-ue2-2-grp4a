@@ -232,14 +232,6 @@ body {
   background: #222;
 }
 
-#nuitjour::after {
-  content: "Thème sombre";
-}
-
-[data-bs-theme="dark"] #nuitjour::after {
-  content: "Thème clair";
-}
-
 /* =================== Pour téléphone =================== */
 @media (max-width: 768px) {
 

@@ -97,14 +97,6 @@ body[data-bs-theme="dark"] {
     box-shadow: 0 0 50px #444;
 }
 
-#nuitjour::after {
-  content: "Thème sombre";
-}
-
-[data-bs-theme="dark"] #nuitjour::after {
-  content: "Thème clair";
-}
-
 
 /* =================== Pour téléphone =================== */
 

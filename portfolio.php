@@ -49,7 +49,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- Relation avec lucide icons -->
     <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css" />
-    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="css/portfolio.css">
 </head>
 
 <body>
