@@ -1,5 +1,6 @@
 <?php
     include "interne/db.php";
+    include "interne/date_format.php";
 
     $name = $_GET['name'] ?? '';
     if ($name == '') {
@@ -183,7 +184,7 @@
                         <h5 class="card-title"><?= $experience['poste'] ?></h5>
                         <p class="card-text"><small class="text-body-secondary">
                             <?= $experience['entreprise'] ?>
-                            - <?= $experience['debut'] ?> (<?= $experience['duree'] ?>)
+                            - <?= formatMoisAnneeFR($experience['debut']) ?> (<?= $experience['duree'] ?>)
                         </small></p>
                         <p class="card-text"><?= $experience['description'] ?></p>
                     </div>
