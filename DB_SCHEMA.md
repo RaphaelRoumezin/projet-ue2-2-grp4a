@@ -36,5 +36,6 @@
 - image (VARCHAR(100)): Image de la carte (comme le logo de l'entreprise)
 - entreprise (VARCHAR(150)): Nom de l'entreprise
 - poste (VARCHAR(150)): Intitulé de poste
+- debut (DATE): Date du début de l'emploi
 - duree (VARCHAR(50)): Temps d'occupation
 - description (TEXT): Description de l'experience

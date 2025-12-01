@@ -28,7 +28,7 @@
     $reseaux = $query->fetchAll(PDO::FETCH_ASSOC);
 
     // Récupérer les expériences associées à la personne
-    $query = $db->prepare("SELECT * FROM experience WHERE membre = ?");
+    $query = $db->prepare("SELECT * FROM experience WHERE membre = ? ORDER BY debut DESC");
     $query->execute([$personne['id']]);
     $experiences = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -181,7 +181,10 @@
                     <img src="<?= $experience['image'] ?>" class="card-img-top" alt="<?= $experience['poste'] ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $experience['poste'] ?></h5>
-                        <p class="card-text"><small class="text-body-secondary"><?= $experience['entreprise'] ?> - <?= $experience['duree'] ?></small></p>
+                        <p class="card-text"><small class="text-body-secondary">
+                            <?= $experience['entreprise'] ?>
+                            - <?= $experience['debut'] ?> (<?= $experience['duree'] ?>)
+                        </small></p>
                         <p class="card-text"><?= $experience['description'] ?></p>
                     </div>
                 </div>

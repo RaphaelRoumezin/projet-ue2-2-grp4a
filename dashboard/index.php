@@ -71,6 +71,12 @@
             $statuts[] = ["danger", "L'entreprise est obligatoire."];
         }
 
+        $debut = $_POST['debut'] ?? '';
+        if ($debut == '' || !preg_match('/^\d+-\d{2}-\d{2}$/', $debut)) {
+            $valide = false;
+            $statuts[] = ["danger", "La date de début est obligatoire."];
+        }
+
         $duree = $_POST['duree'] ?? '';
         if ($duree == '') {
             $valide = false;
@@ -107,11 +113,12 @@
         if ($valide) {
             if ($experience_id === -1) {
                 // Insertion
-                $query = $db->prepare("INSERT INTO experience (membre, poste, entreprise, duree, image, description) VALUES (:membre, :poste, :entreprise, :duree, :image, :description)");
+                $query = $db->prepare("INSERT INTO experience (membre, poste, entreprise, debut, duree, image, description) VALUES (:membre, :poste, :entreprise, :debut, :duree, :image, :description)");
                 $query->execute([
                     'membre' => $_SESSION['user_id'],
                     'poste' => $poste,
                     'entreprise' => $entreprise,
+                    'debut' => $debut,
                     'duree' => $duree,
                     'image' => $imagePath,
                     'description' => $description
@@ -120,10 +127,11 @@
                 $statuts[] = ["success", "Expérience ajoutée avec succès."];
             } else {
                 // Mise à jour
-                $query = $db->prepare("UPDATE experience SET poste = :poste, entreprise = :entreprise, duree = :duree, description = :description" . (($imagePath != '') ? ", image = :image" : "") . " WHERE id = :id AND membre = :membre");
+                $query = $db->prepare("UPDATE experience SET poste = :poste, entreprise = :entreprise, debut = :debut, duree = :duree, description = :description" . (($imagePath != '') ? ", image = :image" : "") . " WHERE id = :id AND membre = :membre");
                 $params = [
                     'poste' => $poste,
                     'entreprise' => $entreprise,
+                    'debut' => $debut,
                     'duree' => $duree,
                     'description' => $description,
                     'id' => $experience_id,
@@ -248,10 +256,11 @@
         <h2>Mes expériences</h2>
 
         <?php 
-            function ligneExperience($id, $poste, $entreprise, $duree, $image, $description) {
+            function ligneExperience($id, $poste, $entreprise, $debut, $duree, $image, $description) {
                 return "<tr>
                     <td>" . htmlspecialchars($poste) . "</td>
                     <td>" . htmlspecialchars($entreprise) . "</td>
+                    <td>" . htmlspecialchars($debut) . "</td>
                     <td>" . htmlspecialchars($duree) . "</td>
                     <td><img src='../" . htmlspecialchars($image) . "' alt='" . htmlspecialchars($poste) . "' style='max-width: 100px;'></td>
                     <td>" . htmlspecialchars($description) . "</td>
@@ -262,12 +271,13 @@
                 </tr>";
             }
 
-            function ligneExperienceEditable($id, $poste, $entreprise, $duree, $description) {
+            function ligneExperienceEditable($id, $poste, $entreprise, $debut, $duree, $description) {
                 // action='.' permet de sortir du mode édition après soumission (en enlevant le paramètre GET)
                 return "<tr class='editable'><form method='post' action='.' enctype='multipart/form-data'>
                     <input type='hidden' name='experience_id' value='$id'>
                     <td><input type='text' class='form-control' name='poste' value='" . htmlspecialchars($poste) . "'></td>
                     <td><input type='text' class='form-control' name='entreprise' value='" . htmlspecialchars($entreprise) . "'></td>
+                    <td><input type='date' class='form-control' name='debut' value='" . htmlspecialchars($debut) . "'></td>
                     <td><input type='text' class='form-control' name='duree' value='" . htmlspecialchars($duree) . "'></td>
                     <td><input type='file' class='form-control' name='image'></td>
                     <td><input type='text' class='form-control' name='description' value='" . htmlspecialchars($description) . "'></td>
@@ -281,6 +291,7 @@
                 <tr>
                     <th>Poste occupé</th>
                     <th>Entreprise</th>
+                    <th>Début</th>
                     <th>Durée</th>
                     <th>Image</th>
                     <th>Description</th>
@@ -300,10 +311,10 @@
                     foreach ($experiences as $experience) {
                         if ($experience['id'] === $edit_experience) {
                             // Ligne éditable
-                            echo ligneExperienceEditable($experience['id'], $experience['poste'], $experience['entreprise'], $experience['duree'], $experience['description']);
+                            echo ligneExperienceEditable($experience['id'], $experience['poste'], $experience['entreprise'], $experience['debut'], $experience['duree'], $experience['description']);
                         } else {
                             // Ligne normale
-                            echo ligneExperience($experience['id'], $experience['poste'], $experience['entreprise'], $experience['duree'], $experience['image'], $experience['description']);
+                            echo ligneExperience($experience['id'], $experience['poste'], $experience['entreprise'], $experience['debut'], $experience['duree'], $experience['image'], $experience['description']);
                         }
                     } 
                 ?>
@@ -311,7 +322,7 @@
                 <!-- Ligne d'ajout d'expérience (si pas de ligne en modification) -->
                 <?php 
                     if ($edit_experience === -1) {
-                        echo ligneExperienceEditable(-1, '', '', '', '');
+                        echo ligneExperienceEditable(-1, '', '', '', '', '');
                     }
                 ?>
             </tbody>
