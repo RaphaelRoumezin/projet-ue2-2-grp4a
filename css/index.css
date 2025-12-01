@@ -3,7 +3,7 @@
 /* =================== Pour ordinateur =================== */
 
 body, html {
-    background-color: #e8e8e8;
+    /* background-color: #e8e8e8; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,12 +95,8 @@ footer {
   content: "Thème clair";
 }
 
-body[data-bs-theme="dark"] {
-    background-color: #121212;
-}
-
 [data-bs-theme="dark"] .card-personne {
-    box-shadow: 0 0 0 #222;
+    box-shadow: 0 0 20px #333;
 }
 
 [data-bs-theme="dark"] .card-personne:hover {
