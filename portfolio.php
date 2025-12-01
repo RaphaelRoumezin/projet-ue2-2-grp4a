@@ -62,7 +62,6 @@
         <a id="link-projets" href="#projets">Mes projets</a>
         <a id="link-experiences" href="#experiences">Mes expériences</a>
         <a id="link-competences" href="#competences">Mes compétences</a>
-        <a href="contact.php?to=<?= $name ?>">Contact</a>
         <a href="#" id="nuitjour"></a>
     </nav>
 
@@ -80,11 +79,17 @@
                         <span class="icon-download"></span>
                         Télécharger mon CV
                     </a>
-                    <?php foreach ($reseaux as $reseau): ?>
-                    <a href="<?= $reseau['url']?>" target="_blank" class="btn btn-outline-secondary">
-                        <span class="icon-<?= $reseau['icone'] ?>"></span>
-                        <?= $reseau['nom']?>
+
+                    <a href="contact.php?to=<?= $name ?>" target="_blank" class="btn btn-outline-secondary">
+                        <span class="icon-send"></span>
+                        Formulaire de contact
                     </a>
+
+                    <?php foreach ($reseaux as $reseau): ?>
+                        <a href="<?= $reseau['url']?>" target="_blank" class="btn btn-outline-secondary">
+                            <span class="icon-<?= $reseau['icone'] ?>"></span>
+                            <?= $reseau['nom']?>
+                        </a>
                     <?php endforeach; ?>
                 </div>
             

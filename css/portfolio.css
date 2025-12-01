@@ -279,7 +279,7 @@ body {
 
   /* Boutons réseaux */
   .buttons-colonne {
-    align-items: center;
+    align-items: stretch;
     width: 100%;
   }
 
