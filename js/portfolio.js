@@ -1,39 +1,54 @@
+// Séléction des éléments nécessaires
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".cool-navbar a");
 const pausedAnimations = document.querySelectorAll(".fade-in.paused");
 
+// ===== Gestion de la navigation et du lien actif =====
+
+// Section active (correspond au lien souligné)
 let currentSection = null;
 
+// Fonction pour mettre à jour le lien actif
 function updateActiveLink(id) {
     // Enlever l'ancienne classe active
-        if (currentSection) {
-            const oldLink = document.querySelector(`#link-${currentSection}`);
-            if (oldLink) {
-                oldLink.classList.remove("active");
-            }
+    if (currentSection) {
+        const oldLink = document.querySelector(`#link-${currentSection}`);
+        if (oldLink) {
+            oldLink.classList.remove("active");
         }
+    }
 
-        currentSection = id;
+    currentSection = id;
 
-        const activeLink = document.querySelector(`#link-${id}`);
-        if (activeLink) {
-            activeLink.classList.add("active");
-        }
+    // Ajouter la nouvelle classe active
+    const activeLink = document.querySelector(`#link-${id}`);
+    if (activeLink) {
+        activeLink.classList.add("active");
+    }
 }
 
+// Pour chaque section, enregistrer à partir de quel offset de scroll elle commence
 const offsets = {};
+
 sections.forEach(section => {
     offsets[section.id] = section.offsetTop;
 });
+
 // Mettre la section accueil comme la plus haute
 offsets["accueil"] = -1;
 
-// Mettre la dernière section comme la plus basse   
-offsets["competences"] = document.body.scrollHeight - window.innerHeight - 10;
+// L'activation de la dernière section "compétences" se fait lorsque l'on atteint le bas de la page,
+// si la section "compétences" est trop petite
+const plusBassePosition = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight - 10;
+if (offsets["competences"] < plusBassePosition) {
+    offsets["competences"] = plusBassePosition;
+}
 
+// Fonction appelée pour mettre à jour la section active lors du scroll
 function onScroll() {
     const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+    // Cherche la nouvelle section active
     let newSection = currentSection;
     
     // Pour tous les offset, trouver le plus grand offset inférieur à la position du scroll
@@ -60,6 +75,8 @@ navLinks.forEach(el => {
     });
 });
 
+// ===== Animations au scroll =====
+
 // Créer un IntersectionObserver pour détecter quand les éléments entrent dans le viewport
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -70,6 +87,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 }); // Déclencher quand 50% de l'élément est visible
 
+// Observer chaque élément avec l'animation en pause
 pausedAnimations.forEach(el => {
     observer.observe(el);
 });
