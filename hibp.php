@@ -17,8 +17,10 @@
             $prefix = substr($hash, 0, 5);
             $suffix = substr($hash, 5);
 
+            // Requête à l'API Have I Been Pwned
             $result = file_get_contents("https://api.pwnedpasswords.com/range/" . urlencode($prefix));
 
+            // Traitement de la réponse
             $lines = explode("\n", $result);
             $found = false;
             foreach ($lines as $line) {
@@ -26,7 +28,7 @@
                 if (strcasecmp($explodedLine[0], $suffix) == 0) {
                     $found = true;
                     $count = (int)$explodedLine[1];
-                    break;
+                    // break;
                 }
             }
 
@@ -48,9 +50,12 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Relation avec notre css -->
+    <!-- Relation avec le css général -->
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- Icone de l'onglet -->
     <link rel='icon' href='favicon.png'>
+    <!-- Titre de l'onglet -->
     <title>Have You Been Pwned ?</title>
 </head>
 
@@ -74,8 +79,9 @@
             </div>
         </form>
     </main>
-    <!-- footer en bas de la page grace a notre liaison a index.css -->
+
     <footer>
+        <!-- Lien et script pour le bouton nuit/jour -->
         <a href="#" id="nuitjour"></a>
         <script src="js/nuitjour.js"></script>
         -

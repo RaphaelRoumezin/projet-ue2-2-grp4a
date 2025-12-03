@@ -12,6 +12,7 @@
         exit();
     }
 
+    // Récupération des informations du destinataire
     $query = $db->prepare("SELECT id, fullname FROM membre WHERE name = :name LIMIT 1");
     if (!$query->execute(['name' => $name])) {
         die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
@@ -82,7 +83,7 @@
         }
 
         if ($valide == true) {
-            // Insertion en base de données
+            // Insertion du message en base de données
             $query = $db->prepare("INSERT INTO message (destinataire, nom, prenom, genre, tel, email, sujet, content) VALUES (:destinataire, :nom, :prenom, :genre, :tel, :email, :sujet, :content)");
             $success = $query->execute([
                 'destinataire' => $to['id'],
@@ -114,11 +115,15 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Relation avec notre css -->
+    <!-- Relation avec le css général -->
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- Icone de l'onglet -->
     <link rel='icon' href='favicon.png'>
+    <!-- Titre de l'onglet -->
     <title>Nos portfolios</title>
-    <!-- CSS directement dans notre contact, mise en place d'une "grille" -->
+
+    <!-- CSS directement dans notre contact, mise en place d'une "grille" pour l'affichage du formulaire -->
     <style>
         form {
             display: grid;
@@ -143,7 +148,9 @@
         <!-- Titre sur notre page -->
         <h1 class="titre">Contacter <?= $to["fullname"] ?></h1>
     </header>
+
     <!-- rubriques nom prénom genres téléphone email sujet message -->
+    <!-- Les valeurs sont pré-remplies du dernier message envoyé, pratique en cas d'une erreur -->
     <main class="section-etroite">
         <form method="post">
             <input type="hidden" name="to" value="<?= htmlspecialchars($name) ?>">
@@ -198,8 +205,9 @@
             </div>
         </form>
     </main>
-    <!-- footer en bas de la page grace a notre liaison a index.css -->
+
     <footer>
+        <!-- Lien et script pour le bouton nuit/jour -->
         <a href="#" id="nuitjour"></a>
         <script src="js/nuitjour.js"></script>
         -

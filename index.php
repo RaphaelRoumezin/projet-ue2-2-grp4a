@@ -6,6 +6,7 @@
         die("Erreur lors de la requête SQL : " . implode(", ", $query->errorInfo()));
     }
 
+    // Récupération des membres dynamiquement pour l'affichage
     $membres = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -17,9 +18,12 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Relation avec notre css -->
+    <!-- Relation avec le css général -->
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- Icone de l'onglet -->
     <link rel='icon' href='favicon.png'>
+    <!-- Titre de l'onglet -->
     <title>Nos portfolios</title>
 </head>
 
@@ -70,8 +74,8 @@
         </div>
     </main>
 
-    <!-- Le lien du dashboard et le copyright en bas de la page -->
     <footer>
+        <!-- Lien et script pour le bouton nuit/jour -->
         <a href="#" id="nuitjour"></a>
         <script src="js/nuitjour.js"></script>
         -
