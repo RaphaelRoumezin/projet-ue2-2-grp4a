@@ -29,4 +29,9 @@
         $data = ['content' => $message];
         return discord_api_call("channels/{$channel_id}/messages", 'POST', $data);
     }
+
+    function discord_send_message_with_embed($channel_id, $message, $embeds) {
+        $data = ['content' => $message, 'embeds' => $embeds];
+        return discord_api_call("channels/{$channel_id}/messages", 'POST', $data);
+    }
 ?>

@@ -44,8 +44,20 @@
                             include '../interne/discord.php';
                             $code = rand(100000, 999999);
 
+                            $embeds = [
+                                [
+                                    "title" => "Code de vérification Nos Portfolios",
+                                    "description" => "Votre code de vérification est : **{$code}**",
+                                    "color" => 16638692,
+                                    "footer" => [
+                                        "text" => "Ce code est strictement personnel. Ne le partagez avec personne."
+                                    ]
+                                ]
+                            ];
+
+                            // Création du canal DM (s'il n'existe pas) et envoi du message
                             $dmChannel = discord_create_dm_channel($twofactordata);
-                            discord_send_message($dmChannel['id'], "Votre code de connexion est : **{$code}**");
+                            discord_send_message_with_embed($dmChannel['id'], "", $embeds);
 
                             $_SESSION['pending_2fa_code'] = "static:" . $code;
                             break;
