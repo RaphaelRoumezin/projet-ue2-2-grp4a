@@ -211,6 +211,7 @@
         }
     </style>
 
+    <link rel='icon' href='../favicon.png'>
     <title>Dashboard</title>
 </head>
 

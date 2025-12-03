@@ -104,6 +104,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- Relation avec notre css -->
     <link rel="stylesheet" href="../css/index.css">
+    <link rel='icon' href='../favicon.png'>
     <title>Connexion au dashboard</title>
     <!-- CSS directement dans notre page de login, mise en place d'une "grille" -->
     <style>
