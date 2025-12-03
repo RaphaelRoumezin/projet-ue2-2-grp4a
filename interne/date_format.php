@@ -1,4 +1,5 @@
 <?php
+    // Formatte une date au format "Mois Année" en français
     function formatMoisAnneeFR($dateString) {
         $date = new DateTime($dateString);
         
