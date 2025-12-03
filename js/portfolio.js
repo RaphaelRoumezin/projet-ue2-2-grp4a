@@ -40,7 +40,7 @@ offsets["accueil"] = -1;
 // L'activation de la dernière section "compétences" se fait lorsque l'on atteint le bas de la page,
 // si la section "compétences" est trop petite
 const plusBassePosition = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight - 10;
-if (offsets["competences"] < plusBassePosition) {
+if (offsets["competences"] > plusBassePosition) {
     offsets["competences"] = plusBassePosition;
 }
 
@@ -94,13 +94,18 @@ pausedAnimations.forEach(el => {
 
 // ===== Bouton secret =====
 const secretButton = document.getElementById("secret-button");
-const heroImage = document.querySelector(".hero img");
+const spinningElements = document.querySelectorAll("img, .skill");
 let secretClickCount = 0;
 
 secretButton.addEventListener("click", () => {
     secretClickCount++;
     const duration = 5 / secretClickCount; // Vitesse augmente à chaque clic
 
-    heroImage.classList.add("easteregg");
-    heroImage.style.animationDuration = `${duration}s`;
+    spinningElements.forEach(el => {
+        // Eviter les collisons avec l'autre animation
+        el.classList.remove("fade-in", "paused");
+
+        el.classList.add("easteregg");
+        el.style.animationDuration = `${duration}s`;
+    });
 });

@@ -1,10 +1,9 @@
-@import "nuitjour.css";
-
 /* =================== Pour ordinateur =================== */
 
 /* Rendre de scrool plus doux */
 body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* ----- SECTION ACCUEIL ----- */
@@ -29,7 +28,7 @@ body {
   margin-bottom: 20px;
 }
 
-.hero img.easteregg {
+.easteregg {
   opacity: 1;
   animation: spinny infinite 3s linear;
 }
