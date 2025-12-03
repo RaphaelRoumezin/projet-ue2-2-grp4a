@@ -8,6 +8,7 @@
 
     // Vérification de la connexion
     if (!isset($_SESSION['user_id'])) {
+        // Redirection vers /dashboard/login.php
         header("Location: login.php");
         http_response_code(302);
         exit();
@@ -18,7 +19,7 @@
     $userData = $query->fetch();
 
     if (!$userData) {
-        // L'utilisateur n'existe pas, paradoxe
+        // L'utilisateur n'existe pas, la session est (étrangement) invalide ¯\_(ツ)_/¯
         header("Location: logout.php");
         http_response_code(400);
         exit();
@@ -31,7 +32,7 @@
         if ($nom == '') {
             $statuts[] = ["warning", "Le nom de la compétence à ajouter est obligatoire."];
         } else {
-            // Insertion de la compétence
+            // Insertion de la compétence dans la base de données
             $query = $db->prepare("INSERT INTO competence (membre, nom) VALUES (:membre, :nom)");
             $query->execute([
                 'membre' => $_SESSION['user_id'],
@@ -42,7 +43,7 @@
         }
     }
 
-    // Récupération des compétences
+    // Récupération des compétences de l'utilisateur pour affichage
     $query = $db->prepare("SELECT * FROM competence WHERE membre = :id");
     $query->execute(['id' => $_SESSION['user_id']]);
     $competences = $query->fetchAll();
@@ -89,7 +90,7 @@
             $statuts[] = ["danger", "La description est obligatoire."];
         }
 
-        // Récupération de l'image
+        // Récupération de l'image (optionnelle)
         $imagePath = '';
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             // Upload du fichier
@@ -98,6 +99,7 @@
                 mkdir($uploadDir, 0755, true);
             }
 
+            // Génération d'un nom de fichier unique
             $tmpName = $_FILES['image']['tmp_name'];
             $originalName = basename($_FILES['image']['name']);
             $extension = pathinfo($originalName, PATHINFO_EXTENSION);
@@ -112,7 +114,7 @@
 
         if ($valide) {
             if ($experience_id === -1) {
-                // Insertion
+                // Insertion nouvelle expérience dans la base de données
                 $query = $db->prepare("INSERT INTO experience (membre, poste, entreprise, debut, duree, image, description) VALUES (:membre, :poste, :entreprise, :debut, :duree, :image, :description)");
                 $query->execute([
                     'membre' => $_SESSION['user_id'],
@@ -126,7 +128,7 @@
 
                 $statuts[] = ["success", "Expérience ajoutée avec succès."];
             } else {
-                // Mise à jour
+                // Mise à jour d'une expérience existante dans la base de données
                 $query = $db->prepare("UPDATE experience SET poste = :poste, entreprise = :entreprise, debut = :debut, duree = :duree, description = :description" . (($imagePath != '') ? ", image = :image" : "") . " WHERE id = :id AND membre = :membre");
                 $params = [
                     'poste' => $poste,
@@ -143,18 +145,16 @@
                 $query->execute($params);
 
                 $statuts[] = ["success", "Expérience mise à jour avec succès."];
-
-                // 
             }
         }
     }
 
-    // Récupération des expériences
+    // Récupération des expériences de l'utilisateur pour affichage
     $query = $db->prepare("SELECT * FROM experience WHERE membre = :id");
     $query->execute(['id' => $_SESSION['user_id']]);
     $experiences = $query->fetchAll();
 
-    // Récupération des messages reçus
+    // Récupération des messages reçus pour affichage
     $query = $db->prepare("SELECT * FROM message WHERE destinataire = :id ORDER BY id DESC");
     $query->execute(['id' => $_SESSION['user_id']]);
     $messages = $query->fetchAll();
@@ -169,9 +169,10 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Relation avec notre css -->
+    <!-- Relation avec le css général -->
     <link rel="stylesheet" href="../css/index.css">
 
+    <!-- Style intégré, spécifique à cette page -->
     <style>
         main {
             min-width: calc(100vw - 60px);
@@ -211,17 +212,21 @@
         }
     </style>
 
+    <!-- Icone de l'onglet -->
     <link rel='icon' href='../favicon.png'>
+    <!-- Titre de l'onglet -->
     <title>Dashboard</title>
 </head>
 
 <body>
     <header>
-        <!-- Titre sur notre page -->
+        <!-- Titre sur la page -->
         <h1 class="titre">Dashboard</h1>
     </header>
     <main>
         Connecté en tant que <?= htmlspecialchars($userData['fullname']) ?>. <a href="logout.php">Se déconnecter</a>
+
+        <!-- ***** Zone des messages de statut ***** -->
 
         <div class="zone-statuts">
             <?php foreach ($statuts as [$type, $contenu]) : ?>
@@ -231,6 +236,8 @@
             <?php endforeach; ?>
         </div>
 
+        <!-- ***** Section "Mes compétences" ***** -->
+
         <h2>Mes compétences</h2>
 
         <?php if (count($competences) === 0) : ?>
@@ -238,6 +245,7 @@
         <?php else : ?>
             <ul>
                 <?php foreach ($competences as $competence) : ?>
+                    <!-- La compétence est un lien. Elle s'affiche normalement, mais en cliquant dessus on la supprime -->
                     <li>
                         <a class="lien-suppression" href="suppression.php?type=competence&id=<?= $competence['id'] ?>"><?= htmlspecialchars($competence['nom']) ?></a>
                     </li>
@@ -246,6 +254,7 @@
         <?php endif; ?>
 
         <form method="post">
+            <!-- Champ caché pour identifier le formulaire -->
             <input type="hidden" name="ajout_competence" value="1">
 
             <div class="input-group zone-ajout-competence">
@@ -254,9 +263,12 @@
             </div>
         </form>
 
+        <!-- ***** Section "Mes expériences" ***** -->
+
         <h2>Mes expériences</h2>
 
-        <?php 
+        <?php
+            // Génère une ligne de tableau HTML pour l'affichage d'une expérience
             function ligneExperience($id, $poste, $entreprise, $debut, $duree, $image, $description) {
                 return "<tr>
                     <td>" . htmlspecialchars($poste) . "</td>
@@ -267,11 +279,13 @@
                     <td>" . htmlspecialchars($description) . "</td>
                     <td class='actions'>
                         <a href='?edit_experience=" . urlencode($id) . "' class='btn btn-secondary'>Modifier</a>
+                        <!-- Lien de suppression -->
                         <a href='suppression.php?type=experience&id=" . urlencode($id) . "' class='btn btn-danger'>Supprimer</a>
                     </td>
                 </tr>";
             }
 
+            // Génère une ligne de tableau HTML englobée dans un formulaire pour l'édition/ajout d'une expérience
             function ligneExperienceEditable($id, $poste, $entreprise, $debut, $duree, $description) {
                 // action='.' permet de sortir du mode édition après soumission (en enlevant le paramètre GET)
                 return "<tr class='editable'><form method='post' action='.' enctype='multipart/form-data'>
@@ -311,7 +325,7 @@
 
                     foreach ($experiences as $experience) {
                         if ($experience['id'] === $edit_experience) {
-                            // Ligne éditable
+                            // Ligne modifiable
                             echo ligneExperienceEditable($experience['id'], $experience['poste'], $experience['entreprise'], $experience['debut'], $experience['duree'], $experience['description']);
                         } else {
                             // Ligne normale
@@ -328,6 +342,8 @@
                 ?>
             </tbody>
         </table>
+
+        <!-- ***** Section "Messages recus" ***** -->
 
         <h2>Messages recus</h2>
 
@@ -376,8 +392,9 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </main>
-    <!-- footer en bas de la page grace a notre liaison a index.css -->
+
     <footer>
+        <!-- Lien et script pour le bouton nuit/jour -->
         <a href="#" id="nuitjour"></a>
         <script src="../js/nuitjour.js"></script>
         -

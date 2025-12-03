@@ -41,10 +41,11 @@
                 // Code valide, connexion de l'utilisateur
                 $_SESSION['user_id'] = $_SESSION['pending_2fa_user_id'];
 
-                // Nettoyage des variables temporaires
+                // Nettoyage des variables temporaires pour la 2FA
                 unset($_SESSION['pending_2fa_user_id']);
                 unset($_SESSION['pending_2fa_code']);
 
+                // Redirection vers le dashboard
                 header("Location: .");
                 http_response_code(302);
                 exit();
@@ -64,11 +65,15 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Relation avec notre css -->
+    <!-- Relation avec le css général -->
     <link rel="stylesheet" href="../css/index.css">
+
+    <!-- Icone de l'onglet -->
     <link rel='icon' href='../favicon.png'>
+    <!-- Titre de l'onglet -->
     <title>Connexion au dashboard</title>
-    <!-- CSS directement dans notre page de login, mise en place d'une "grille" -->
+
+    <!-- Style intégré, spécifique à cette page, mise en place d'une "grille" pour l'affichage du formulaire -->
     <style>
         form {
             display: grid;
@@ -106,8 +111,9 @@
             </div>
         </form>
     </main>
-    <!-- footer en bas de la page grace a notre liaison a index.css -->
+
     <footer>
+        <!-- Lien et script pour le bouton nuit/jour -->
         <a href="#" id="nuitjour"></a>
         <script src="../js/nuitjour.js"></script>
         -

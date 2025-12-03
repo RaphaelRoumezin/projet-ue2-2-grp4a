@@ -23,15 +23,16 @@
             $statuts[] = ["warning", "Le mot de passe est obligatoire."];
         }
         if ($valide == true) {
-            // Récupération du hash du mot de passe
+            // Récupération du profil utilisateur
             $query = $db->prepare("SELECT id, password, 2fa FROM membre WHERE name = :name");
             $query->execute(['name' => $user]);
             $userData = $query->fetch();
 
+            // Bounce si l'utilisateur n'a pas été trouvé (nom d'utilisateur incorrect) ou si le mot de passe est incorrect
             if (!$userData || !password_verify($pass, $userData['password'])) {
                 $statuts[] = ["danger", "Nom d'utilisateur ou mot de passe incorrect."];
             } else {
-                // Mot de passe correct, connexion valide
+                // Mot de passe et nom d'utilisateur correct, connexion valide
 
                 // Vérification du 2FA
                 if (!is_null($userData['2fa'])) {
@@ -42,6 +43,8 @@
                         case 'discord':
                             // Envoi du code via Discord
                             include '../interne/discord.php';
+
+                            // Génération du code aléatoire
                             $code = rand(100000, 999999);
 
                             $embeds = [
@@ -61,17 +64,13 @@
 
                             $_SESSION['pending_2fa_code'] = "static:" . $code;
                             break;
-
-                        case 'totp':
-                            // Rien à faire, le code sera généré par l'application TOTP
-                            $_SESSION['pending_2fa_code'] = "totp:" . $twofactordata;
-                            break;
                         
                         default:
                             die("Méthode 2FA retournée par la base de donnée inconnue.");
                             break;
                     }
 
+                    // Redirection vers la page de saisie du code 2FA
                     header("Location: otp.php");
                     http_response_code(302);
                     exit();
@@ -102,11 +101,15 @@
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Relation avec notre css -->
+    <!-- Relation avec le css général -->
     <link rel="stylesheet" href="../css/index.css">
+
+    <!-- Icone de l'onglet -->
     <link rel='icon' href='../favicon.png'>
+    <!-- Titre de l'onglet -->
     <title>Connexion au dashboard</title>
-    <!-- CSS directement dans notre page de login, mise en place d'une "grille" -->
+
+    <!-- Style intégré, spécifique à cette page, mise en place d'une "grille" pour l'affichage du formulaire -->
     <style>
         form {
             display: grid;
@@ -149,8 +152,9 @@
             </div>
         </form>
     </main>
-    <!-- footer en bas de la page grace a notre liaison a index.css -->
+
     <footer>
+        <!-- Lien et script pour le bouton nuit/jour -->
         <a href="#" id="nuitjour"></a>
         <script src="../js/nuitjour.js"></script>
         -
