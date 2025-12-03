@@ -49,7 +49,7 @@
     <link rel='icon' href='favicon.png'>
     <!-- Titre de l'onglet -->
     <title>Portfolio de <?= $personne["fullname"] ?></title>
-    
+
     <!-- Relation avec bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -216,6 +216,8 @@
             <?php endforeach; ?>
         </div>
     </section>
+
+    <div id="secret-button"></div>
 
     <!-- Scripts à la fin du document -->
     <script src="js/portfolio.js"></script>

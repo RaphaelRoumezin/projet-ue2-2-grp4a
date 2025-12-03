@@ -91,3 +91,16 @@ const observer = new IntersectionObserver((entries) => {
 pausedAnimations.forEach(el => {
     observer.observe(el);
 });
+
+// ===== Bouton secret =====
+const secretButton = document.getElementById("secret-button");
+const heroImage = document.querySelector(".hero img");
+let secretClickCount = 0;
+
+secretButton.addEventListener("click", () => {
+    secretClickCount++;
+    const duration = 5 / secretClickCount; // Vitesse augmente à chaque clic
+
+    heroImage.classList.add("easteregg");
+    heroImage.style.animationDuration = `${duration}s`;
+});

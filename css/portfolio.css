@@ -29,6 +29,20 @@ body {
   margin-bottom: 20px;
 }
 
+.hero img.easteregg {
+  opacity: 1;
+  animation: spinny infinite 3s linear;
+}
+
+@keyframes spinny {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Boutons réseaux */
 .buttons-colonne {
   display: flex;
@@ -337,11 +351,14 @@ body {
   /* ----- SECTION EXPERIENCES ----- */
 }
 
-
-
-
-
-
-
-
-
+#secret-button {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  z-index: 1001;
+}
