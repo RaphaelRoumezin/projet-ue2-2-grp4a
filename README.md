@@ -1,6 +1,5 @@
 # NosPortfolios
 
-## Description
 Ce site présente les portfolios de Ethan CHAUDAT, Simon DUCHANAUD et Raphaël ROUMEZIN.
 
 ## Fonctionnalités
