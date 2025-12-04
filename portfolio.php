@@ -29,7 +29,7 @@
     $reseaux = $query->fetchAll(PDO::FETCH_ASSOC);
 
     // Récupérer les expériences associées à la personne
-    $query = $db->prepare("SELECT * FROM experience WHERE membre = ? ORDER BY debut DESC");
+    $query = $db->prepare("SELECT * FROM experience WHERE membre = ? ORDER BY debut ASC");
     $query->execute([$personne['id']]);
     $experiences = $query->fetchAll(PDO::FETCH_ASSOC);
 
