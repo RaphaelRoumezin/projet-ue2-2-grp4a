@@ -270,6 +270,11 @@ body {
 /* =================== Pour téléphone =================== */
 @media (max-width: 768px) {
 
+  /* Ajustement du padding des sections */
+  .section {
+    padding: 50px 10px;
+  }
+
   /* ----- SECTION ACCUEIL ----- */
 
   /* Alignement photo et texte */
@@ -298,17 +303,13 @@ body {
 
   /* ----- SECTION NAVBAR ----- */
 
-  /*Défini la navbar*/
+  /* Disparition de la navbar */
   .cool-navbar {
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 10px;
-    height: auto;
+    display: none;
   }
 
-  /*Espace sous la navbar*/
   .navbar-spacer {
-    height: 120px;
+    display: none;
   }
 
   /* ----- SECTION PROJETS ----- */
@@ -347,7 +348,6 @@ body {
     flex: 1 1 calc(50% - 10px);
   }
 
-  /* ----- SECTION EXPERIENCES ----- */
 }
 
 #secret-button {
