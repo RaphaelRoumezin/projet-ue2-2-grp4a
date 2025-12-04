@@ -121,7 +121,7 @@
     <!-- Icone de l'onglet -->
     <link rel='icon' href='favicon.png'>
     <!-- Titre de l'onglet -->
-    <title>Nos portfolios</title>
+    <title>Contactez-nous</title>
 
     <!-- CSS directement dans notre contact, mise en place d'une "grille" pour l'affichage du formulaire -->
     <style>
