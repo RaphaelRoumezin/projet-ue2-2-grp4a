@@ -1,8 +1,9 @@
 <?php
+    include_once 'env.php';
 
     // Effectue un appel à l'API Discord. Retourne la réponse décodée en tableau associatif.
     function discord_api_call($endpoint, $method = 'GET', $data = null) {
-        $token = parse_ini_file('../env.ini')['DISCORD_TOKEN'];
+        $token = get_env_value('DISCORD_TOKEN');
         
         $url = "https://discord.com/api/v10/" . $endpoint;
         $headers = [
