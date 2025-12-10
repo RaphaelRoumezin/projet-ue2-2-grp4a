@@ -8,6 +8,9 @@
 
     // Récupération des membres dynamiquement pour l'affichage
     $membres = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $catfact = file_get_contents('https://catfact.ninja/fact');
+    $catfact_json = json_decode($catfact, true);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,6 +69,9 @@
                     <img class="images-text" src="images/guardialogo.jfif" alt="guardialogo"> <span class="cyan-gras"> Guardia Cybersecurity School.</span> <br> <br>
                     
                     Si vous souhaitez vérifiez votre mot de passe pour savoir si il a été compromis dans une fuite de données, cliquez sur le bouton <img class="images-text" src="images/pwndlogo.png" alt="pwndlogo"> <span class="orange-gras"> Have you been pwned </span>
+
+                    <br><br>
+                    Interesting fact about cats: <?= htmlspecialchars($catfact_json['fact']) ?>
                 </p>
                 
                 <a href="https://guardia.school/" class="btn btn-primary">Site de Guardia Cybersecurity School </a>
